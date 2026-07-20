@@ -10,19 +10,27 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark">
 
 <div class="container">
 
-<span class="navbar-brand mb-0 h1">
+<a class="navbar-brand fw-bold fs-3">
 
-🏢 Regency Inventory System
+🏢 Regency Inventory
+
+</a>
+
+<span class="text-light">
+
+Smart Sales Tool
 
 </span>
 
@@ -31,59 +39,104 @@
 </nav>
 
 
-<div class="container py-4">
 
-<div class="row">
+<div class="container mt-4">
+
+<div class="hero">
+
+<div>
+
+<h1>Property Finder</h1>
+
+<p>
+
+Search Any Property In Seconds
+
+</p>
+
+</div>
+
+<div>
+
+<span class="badge bg-success fs-6">
+
+System Online
+
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="row mt-4 g-4">
+
+<!-- LEFT -->
 
 <div class="col-lg-4">
 
-<div class="card shadow-sm p-3">
+<div class="card p-4 h-100 shadow-lg border-0">
 
-<h4 class="mb-3">Search Unit</h4>
+<h3 class="mb-4">
 
-<div class="mb-3">
+<i class="bi bi-search"></i>
 
-<label class="form-label">
+Search Property
+
+</h3>
+
+
+
+<label>
 
 Project
 
 </label>
 
-<select class="form-select" id="projectSelect">
+<select id="projectSelect" class="form-select mb-3">
 
-<option>Regency Tower II</option>
+<option>
+
+Regency Tower II
+
+</option>
 
 </select>
 
-</div>
 
-<div class="mb-3">
 
-<label class="form-label">
+<label>
 
 Floor
 
 </label>
 
-<select class="form-select" id="floorSelect">
+<select id="floorSelect" class="form-select mb-3">
 
-<option>Select Floor</option>
+<option>
+
+Select Floor
+
+</option>
 
 </select>
 
-</div>
 
-<div class="mb-3">
 
-<label class="form-label">
+<label>
 
 Area
 
 </label>
 
-<select class="form-select" id="areaSelect">
+<select id="areaSelect" class="form-select">
 
-<option>Select Area</option>
+<option>
+
+Select Area
+
+</option>
 
 </select>
 
@@ -91,30 +144,95 @@ Area
 
 </div>
 
-</div>
 
+
+<!-- RIGHT -->
 
 <div class="col-lg-8">
 
-<div class="card shadow-sm p-3">
+<div class="card shadow-lg border-0 p-4">
 
-<img id="unitImage" class="img-fluid rounded mb-3">
+<img
 
-<h3 id="unitName">
+id="unitImage"
+
+class="img-fluid rounded mb-4">
+
+
+
+<h2 id="unitName">
 
 Select Area
 
-</h3>
+</h2>
 
-<hr>
 
-<p><b>Area:</b> <span id="area"></span></p>
 
-<p><b>Price:</b> <span id="price"></span></p>
+<div class="row mt-3">
 
-<p><b>Status:</b> <span id="status"></span></p>
+<div class="col-md-6 mb-3">
 
-<p><b>Payment Plan:</b> <span id="payment"></span></p>
+<div class="info-box">
+
+<i class="bi bi-rulers"></i>
+
+<h6>Area</h6>
+
+<p id="area"></p>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<div class="info-box">
+
+<i class="bi bi-cash-stack"></i>
+
+<h6>Price</h6>
+
+<p id="price"></p>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<div class="info-box">
+
+<i class="bi bi-check-circle"></i>
+
+<h6>Status</h6>
+
+<p id="status"></p>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<div class="info-box">
+
+<i class="bi bi-credit-card"></i>
+
+<h6>Payment Plan</h6>
+
+<p id="payment"></p>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -123,15 +241,20 @@ Select Area
 </div>
 
 
-<div class="card shadow-sm p-4 mt-4">
 
-<h3>
+<div class="card shadow-lg border-0 mt-4 p-4">
+
+<h2>
+
+<i class="bi bi-calculator"></i>
 
 Payment Calculator
 
-</h3>
+</h2>
 
-<div class="row">
+
+
+<div class="row mt-3">
 
 <div class="col-md-4">
 
@@ -142,39 +265,18 @@ Down Payment
 </label>
 
 <input
-type="number"
+
 id="downPayment"
-class="form-control">
+
+type="number"
+
+class="form-control"
+
+placeholder="500000">
 
 </div>
 
-<div class="col-md-4">
 
-<label>
-
-Payment Type
-
-</label>
-
-<select
-id="paymentType"
-class="form-select">
-
-<option value="12">
-
-Monthly</option>
-
-<option value="4">
-
-Quarterly</option>
-
-<option value="1">
-
-Yearly</option>
-
-</select>
-
-</div>
 
 <div class="col-md-4">
 
@@ -185,7 +287,9 @@ Years
 </label>
 
 <select
+
 id="years"
+
 class="form-select">
 
 <option>8</option>
@@ -198,27 +302,77 @@ class="form-select">
 
 </div>
 
+
+
+<div class="col-md-4">
+
+<label>
+
+Payment Type
+
+</label>
+
+<select
+
+id="paymentType"
+
+class="form-select">
+
+<option value="12">
+
+Monthly
+
+</option>
+
+<option value="4">
+
+Quarterly
+
+</option>
+
+<option value="1">
+
+Yearly
+
+</option>
+
+</select>
+
 </div>
 
-<button
-class="btn btn-primary mt-4 w-100"
-id="calculateBtn">
+</div>
 
-Calculate
+
+
+<button
+
+id="calculateBtn"
+
+class="btn btn-primary w-100 mt-4">
+
+<i class="bi bi-calculator"></i>
+
+Calculate Installment
 
 </button>
 
-<div class="mt-4">
 
-<h4 id="result">
 
-</h4>
+<div
+
+id="result"
+
+class="result-box mt-4">
+
+Select Area First
 
 </div>
 
 </div>
 
 </div>
+
+
 
 <script src="script.js"></script>
 
