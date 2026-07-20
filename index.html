@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Regency Unit Finder</title>
 
 <style>
@@ -42,9 +43,17 @@ select{
     color:green;
     font-weight:bold;
 }
+
+img{
+    width:100%;
+    border-radius:10px;
+    margin-top:20px;
+}
+
 </style>
 
 </head>
+
 
 <body>
 
@@ -52,28 +61,110 @@ select{
 
 <h1>Regency Unit Finder</h1>
 
-<select>
+
+<select id="unitSelect">
 <option>Select Unit</option>
-<option>A101</option>
-<option>A102</option>
-<option>B201</option>
 </select>
+
 
 <div class="card">
 
-<h2>Unit A101</h2>
+<h2 id="unitName">Select a Unit</h2>
 
-<p><b>Area:</b> 52 SQM</p>
+<p><b>Area:</b> <span id="area"></span></p>
 
-<p><b>Price:</b> 3,250,000 EGP</p>
+<p><b>Price:</b> <span id="price"></span></p>
 
-<p><b>Payment Plan:</b> 10% Down Payment - 8 Years</p>
+<p><b>Payment Plan:</b> <span id="payment"></span></p>
 
-<p class="available">Available</p>
+<p id="status"></p>
+
+<img id="unitImage">
+
 
 </div>
 
 </div>
+
+
+<script>
+
+fetch("units.json")
+
+.then(response => response.json())
+
+.then(units => {
+
+
+let dropdown = document.getElementById("unitSelect");
+
+
+// Add units to dropdown
+
+units.forEach(unit => {
+
+let option = document.createElement("option");
+
+option.value = unit.unit;
+
+option.textContent = unit.unit;
+
+dropdown.appendChild(option);
+
+});
+
+
+
+// When selecting unit
+
+dropdown.addEventListener("change", function(){
+
+
+let selectedUnit = units.find(
+u => u.unit === this.value
+);
+
+
+if(selectedUnit){
+
+
+document.getElementById("unitName").innerHTML =
+"Unit " + selectedUnit.unit;
+
+
+document.getElementById("area").innerHTML =
+selectedUnit.area;
+
+
+document.getElementById("price").innerHTML =
+selectedUnit.price || "Not Available";
+
+
+document.getElementById("payment").innerHTML =
+selectedUnit.payment;
+
+
+document.getElementById("status").innerHTML =
+selectedUnit.status;
+
+
+document.getElementById("unitImage").src =
+selectedUnit.image;
+
+
+}
+
+
+});
+
+
+})
+
+.catch(error => console.log(error));
+
+
+</script>
+
 
 </body>
 </html>
