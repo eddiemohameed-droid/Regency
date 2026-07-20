@@ -1,43 +1,57 @@
 [
   {
     "floor": "Ground Floor",
-    "units": [
+    "areas": [
       {
-        "unit": "G-001",
-        "area": "120 sqm",
-        "price": 6500000,
-        "payment": "10% Down Payment - 8 Years",
+        "area": "75 SQM",
+        "type": "Retail Shop",
+        "price": 3200000,
         "status": "Available",
-        "image": "unit101.jpg"
+        "payment": "10% DP - 8 Years",
+        "delivery": "2027",
+        "image": "images/ground75.jpg"
       },
       {
-        "unit": "G-002",
-        "area": "100 sqm",
-        "price": 5500000,
-        "payment": "15% Down Payment - 10 Years",
-        "status": "Sold",
-        "image": "unit102.jpg"
+        "area": "95 SQM",
+        "type": "Retail Shop",
+        "price": 4150000,
+        "status": "Available",
+        "payment": "10% DP - 8 Years",
+        "delivery": "2027",
+        "image": "images/ground95.jpg"
+      },
+      {
+        "area": "150 SQM",
+        "type": "Restaurant",
+        "price": 6850000,
+        "status": "Reserved",
+        "payment": "15% DP - 10 Years",
+        "delivery": "2027",
+        "image": "images/ground150.jpg"
       }
     ]
   },
+
   {
     "floor": "First Floor",
-    "units": [
+    "areas": [
       {
-        "unit": "F-101",
-        "area": "90 sqm",
-        "price": 4500000,
-        "payment": "10% Down Payment - 8 Years",
+        "area": "75 SQM",
+        "type": "Clinic",
+        "price": 3600000,
         "status": "Available",
-        "image": "unit101.jpg"
+        "payment": "10% DP - 8 Years",
+        "delivery": "2028",
+        "image": "images/first75.jpg"
       },
       {
-        "unit": "F-102",
-        "area": "110 sqm",
-        "price": 6000000,
-        "payment": "20% Down Payment - 10 Years",
+        "area": "95 SQM",
+        "type": "Clinic",
+        "price": 4550000,
         "status": "Available",
-        "image": "unit102.jpg"
+        "payment": "15% DP - 10 Years",
+        "delivery": "2028",
+        "image": "images/first95.jpg"
       }
     ]
   }
