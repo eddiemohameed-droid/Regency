@@ -1,5 +1,6 @@
 [
   {
+    "project": "Regency Tower II",
     "floor": "Ground Floor",
     "areas": [
       {
@@ -8,7 +9,6 @@
         "price": 3200000,
         "status": "Available",
         "payment": "10% DP - 8 Years",
-        "delivery": "2027",
         "image": "images/ground75.jpg"
       },
       {
@@ -17,40 +17,20 @@
         "price": 4150000,
         "status": "Available",
         "payment": "10% DP - 8 Years",
-        "delivery": "2027",
         "image": "images/ground95.jpg"
-      },
-      {
-        "area": "150 SQM",
-        "type": "Restaurant",
-        "price": 6850000,
-        "status": "Reserved",
-        "payment": "15% DP - 10 Years",
-        "delivery": "2027",
-        "image": "images/ground150.jpg"
       }
     ]
   },
-
   {
+    "project": "Regency Tower II",
     "floor": "First Floor",
     "areas": [
-      {
-        "area": "75 SQM",
-        "type": "Clinic",
-        "price": 3600000,
-        "status": "Available",
-        "payment": "10% DP - 8 Years",
-        "delivery": "2028",
-        "image": "images/first75.jpg"
-      },
       {
         "area": "95 SQM",
         "type": "Clinic",
         "price": 4550000,
-        "status": "Available",
+        "status": "Reserved",
         "payment": "15% DP - 10 Years",
-        "delivery": "2028",
         "image": "images/first95.jpg"
       }
     ]
