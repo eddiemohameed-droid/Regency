@@ -18,30 +18,41 @@ body{
 
 
 .container{
-
     width:700px;
     margin:50px auto;
-    background:#fff;
+    background:white;
     padding:30px;
     border-radius:15px;
     box-shadow:0 0 20px rgba(0,0,0,.15);
-
 }
 
 
 h1{
-
     text-align:center;
     color:#003B73;
-
 }
 
 
-select{
+select,
+input{
 
     width:100%;
     padding:12px;
     margin:10px 0;
+    box-sizing:border-box;
+
+}
+
+
+button{
+
+    width:100%;
+    padding:12px;
+    background:#003B73;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
 
 }
 
@@ -75,13 +86,14 @@ select{
 img{
 
     width:100%;
-    border-radius:10px;
     margin-top:20px;
+    border-radius:10px;
 
 }
 
 
 </style>
+
 
 </head>
 
@@ -92,7 +104,9 @@ img{
 <div class="container">
 
 
-<h1>Regency Unit Finder</h1>
+<h1>
+Regency Unit Finder
+</h1>
 
 
 
@@ -109,6 +123,7 @@ img{
 <option>Select Unit</option>
 
 </select>
+
 
 
 
@@ -150,8 +165,51 @@ Select a Unit
 
 
 
-</div>
+<hr>
 
+
+
+<h2>
+Payment Calculator
+</h2>
+
+
+<label>
+Down Payment
+</label>
+
+<input 
+type="number" 
+id="downPayment"
+placeholder="Enter Down Payment">
+
+
+
+<label>
+Installment Years
+</label>
+
+
+<input 
+type="number" 
+id="years"
+placeholder="Enter Years">
+
+
+
+<button onclick="calculatePayment()">
+
+Calculate
+
+</button>
+
+
+
+<h3 id="result"></h3>
+
+
+
+</div>
 
 
 </div>
@@ -161,6 +219,10 @@ Select a Unit
 
 
 <script>
+
+
+let currentPrice = 0;
+
 
 
 fetch("units.json")
@@ -173,9 +235,12 @@ fetch("units.json")
 
 
 
-let floorSelect = document.getElementById("floorSelect");
+let floorSelect =
+document.getElementById("floorSelect");
 
-let unitSelect = document.getElementById("unitSelect");
+
+let unitSelect =
+document.getElementById("unitSelect");
 
 
 
@@ -186,13 +251,16 @@ let unitSelect = document.getElementById("unitSelect");
 data.forEach(floor => {
 
 
-let option = document.createElement("option");
+let option =
+document.createElement("option");
 
 
-option.value = floor.floor;
+option.value =
+floor.floor;
 
 
-option.textContent = floor.floor;
+option.textContent =
+floor.floor;
 
 
 floorSelect.appendChild(option);
@@ -207,39 +275,40 @@ floorSelect.appendChild(option);
 // Select Floor
 
 
-floorSelect.addEventListener("change", function(){
+floorSelect.addEventListener("change",function(){
+
+
+unitSelect.innerHTML =
+"<option>Select Unit</option>";
 
 
 
-unitSelect.innerHTML = "<option>Select Unit</option>";
-
-
-
-let selectedFloor = data.find(
+let selectedFloor =
+data.find(
 f => f.floor === this.value
 );
 
 
 
-selectedFloor.units.forEach(unit => {
+selectedFloor.units.forEach(unit=>{
 
 
-
-let option = document.createElement("option");
-
-
-option.value = unit.unit;
+let option =
+document.createElement("option");
 
 
-option.textContent = unit.unit;
+option.value =
+unit.unit;
+
+
+option.textContent =
+unit.unit;
 
 
 unitSelect.appendChild(option);
 
 
-
 });
-
 
 
 });
@@ -253,21 +322,27 @@ unitSelect.appendChild(option);
 // Select Unit
 
 
-unitSelect.addEventListener("change", function(){
+unitSelect.addEventListener("change",function(){
 
 
 
-let selectedFloor = data.find(
-f => f.floor === floorSelect.value
+let selectedFloor =
+data.find(
+f=>f.floor === floorSelect.value
 );
 
 
 
-let selectedUnit = selectedFloor.units.find(
-u => u.unit === this.value
+let selectedUnit =
+selectedFloor.units.find(
+u=>u.unit === this.value
 );
 
 
+
+
+currentPrice =
+selectedUnit.price;
 
 
 
@@ -282,7 +357,9 @@ selectedUnit.area;
 
 
 document.getElementById("price").innerHTML =
-selectedUnit.price.toLocaleString() + " EGP";
+selectedUnit.price.toLocaleString()
++
+" EGP";
 
 
 
@@ -291,25 +368,21 @@ selectedUnit.payment;
 
 
 
-let status = document.getElementById("status");
+let status =
+document.getElementById("status");
 
 
-status.innerHTML = selectedUnit.status;
+status.innerHTML =
+selectedUnit.status;
 
 
 
-if(selectedUnit.status === "Available"){
-
-status.className="available";
-
-}
-
-else{
-
-status.className="sold";
-
-}
-
+status.className =
+selectedUnit.status === "Available"
+?
+"available"
+:
+"sold";
 
 
 
@@ -318,20 +391,63 @@ selectedUnit.image;
 
 
 
-
 });
-
 
 
 
 })
 
+.catch(error=>console.log(error));
 
-.catch(error => console.log(error));
+
+
+
+
+
+
+function calculatePayment(){
+
+
+
+let downPayment =
+Number(
+document.getElementById("downPayment").value
+);
+
+
+
+let years =
+Number(
+document.getElementById("years").value
+);
+
+
+
+let remaining =
+currentPrice - downPayment;
+
+
+
+let monthly =
+remaining / (years * 12);
+
+
+
+document.getElementById("result").innerHTML =
+
+"Monthly Installment: "
++
+Math.round(monthly).toLocaleString()
++
+" EGP";
+
+
+
+}
+
 
 
 </script>
-
 
 
 </body>
