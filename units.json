@@ -1,16 +1,8 @@
 [
-  {
-    "unit": "A-101",
-    "area": "65 sqm",
-    "payment": "10% Down Payment - 8 Years",
-    "status": "Available",
-    "image": "TYPE B - TYPICAL FLOOR-2 copy.jpg"
-  },
-  {
-    "unit": "A-102",
-    "area": "90 sqm",
-    "payment": "15% Down Payment - 10 Years",
-    "status": "Sold",
-    "image": "TYPE B - TYPICAL FLOOR-2 copy.jpg"
-  }
+ {
+  "unit": "A-101",
+  "area": "65 sqm",
+  "payment": "...",
+  "status": "Available"
+ }
 ]
