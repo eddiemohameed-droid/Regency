@@ -340,14 +340,16 @@ You have <b>3 days</b> to visit the company and complete the reservation payment
 <hr>
 
 
-<h5>
-📍 Company Location
-</h5>
+<h5>📍 Company Location</h5>
 
-
-<p>
-Mall 220 Second Sector, First Floor, North 90th, Cairo Governorate 11865
-</p>
+<iframe
+width="100%"
+height="250"
+style="border:0;border-radius:15px;margin-top:10px"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q=Mall 220 Second Sector, First Floor, North 90th, Cairo Governorate 11865&output=embed">
+</iframe>
 
 `;
 
@@ -388,14 +390,16 @@ Visa payment reservation completed successfully.
 <hr>
 
 
-<h5>
-📍 Company Location
-</h5>
+<h5>📍 Company Location</h5>
 
-
-<p>
-Mall 220 Second Sector, First Floor, North 90th, Cairo Governorate 11865
-</p>
+<iframe
+width="100%"
+height="250"
+style="border:0;border-radius:15px;margin-top:10px"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q=Mall 220 Second Sector, First Floor, North 90th, Cairo Governorate 11865&output=embed">
+</iframe>
 
 `;
 
