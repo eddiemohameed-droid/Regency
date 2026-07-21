@@ -16,23 +16,38 @@
 
 </head>
 
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
+
+<nav class="navbar navbar-dark">
 
 <div class="container">
 
-<a class="navbar-brand fw-bold fs-3">
+<span class="navbar-brand fw-bold fs-3">
 
 🏢 Regency Inventory
 
-</a>
-
-<span class="text-light">
-
-Smart Sales Tool
-
 </span>
+
+
+<div>
+
+<button class="btn btn-light me-2">
+
+Sales Mode
+
+</button>
+
+
+<button class="btn btn-warning">
+
+Admin Mode
+
+</button>
+
+</div>
+
 
 </div>
 
@@ -40,71 +55,44 @@ Smart Sales Tool
 
 
 
-<div class="container mt-4">
+<div class="container py-4">
+
 
 <div class="hero">
 
-<div>
+<h1>
 
-<h1>Regency unit finder</h1>
+Smart Property Finder
+
+</h1>
 
 <p>
 
-Search Any Property In Seconds
+Complete Real Estate Sales System
 
 </p>
 
 </div>
 
-<div>
-
-<span class="badge bg-success fs-6">
-
-System Online
-
-</span>
-
-</div>
-
-</div>
 
 
 
-<div class="row mt-4 g-4">
+<!-- SEARCH -->
 
-<!-- LEFT -->
+<div class="card shadow p-4 mt-4">
 
-<div class="col-lg-4">
 
-<div class="card p-4 h-100 shadow-lg border-0">
+<h3>
 
-<h3 class="mb-4">
-
-<i class="bi bi-search"></i>
-
-Search Property
+🔍 Search Property
 
 </h3>
 
 
-
-<label>
-
-Project
-
-</label>
-
-<select id="projectSelect" class="form-select mb-3">
-
-<option>
-
-Regency Tower II
-
-</option>
-
-</select>
+<div class="row">
 
 
+<div class="col-md-4">
 
 <label>
 
@@ -112,17 +100,17 @@ Floor
 
 </label>
 
-<select id="floorSelect" class="form-select mb-3">
+<select id="floorSelect" class="form-select">
 
-<option>
-
-Select Floor
-
-</option>
+<option>Select Floor</option>
 
 </select>
 
+</div>
 
+
+
+<div class="col-md-4">
 
 <label>
 
@@ -132,173 +120,242 @@ Area
 
 <select id="areaSelect" class="form-select">
 
-<option>
-
-Select Area
-
-</option>
+<option>Select Area</option>
 
 </select>
 
 </div>
 
+
+
+<div class="col-md-4">
+
+<label>
+
+Search Area
+
+</label>
+
+<select id="areaSearch" class="form-select">
+
+<option>All Areas</option>
+
+<option>45 SQM</option>
+<option>78 SQM</option>
+<option>90 SQM</option>
+<option>95 SQM</option>
+<option>115 SQM</option>
+<option>150 SQM</option>
+<option>190 SQM</option>
+<option>200 SQM</option>
+
+
+</select>
+
+</div>
+
+
+</div>
+
+
 </div>
 
 
 
-<!-- RIGHT -->
 
-<div class="col-lg-8">
 
-<div class="card shadow-lg border-0 p-4">
 
-<img
+<!-- DETAILS -->
 
-id="unitImage"
 
-class="img-fluid rounded mb-4">
+<div class="card shadow p-4 mt-4">
 
+
+<div class="row">
+
+
+<div class="col-lg-6">
+
+
+<img id="unitImage"
+
+class="img-fluid rounded">
+
+
+<div id="gallery"
+
+class="d-flex gap-2 mt-3">
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="col-lg-6">
 
 
 <h2 id="unitName">
 
-Select Area
+Select Unit
 
 </h2>
 
 
 
-<div class="row mt-3">
-
-<div class="col-md-6 mb-3">
-
-<div class="info-box">
-
-<i class="bi bi-rulers"></i>
-
-<h6>Area</h6>
-
-<p id="area"></p>
-
-</div>
-
-</div>
+<hr>
 
 
 
-<div class="col-md-6 mb-3">
+<p>
 
-<div class="info-box">
+<b>Area:</b>
 
-<i class="bi bi-cash-stack"></i>
+<span id="area"></span>
 
-<h6>Price</h6>
-
-<p id="price"></p>
-
-</div>
-
-</div>
+</p>
 
 
 
-<div class="col-md-6 mb-3">
+<p>
 
-<div class="info-box">
+<b>Price:</b>
 
-<i class="bi bi-check-circle"></i>
+<span id="price"></span>
 
-<h6>Status</h6>
-
-<p id="status"></p>
-
-</div>
-
-</div>
+</p>
 
 
 
-<div class="col-md-6 mb-3">
+<p>
 
-<div class="info-box">
+<b>Status:</b>
 
-<i class="bi bi-credit-card"></i>
+<span id="status"></span>
 
-<h6>Payment Plan</h6>
+</p>
 
-<p id="payment"></p>
 
-</div>
+
+<p>
+
+<b>Payment:</b>
+
+<span id="payment"></span>
+
+</p>
+
+
+
+<button class="btn btn-success mt-3">
+
+⭐ Add To Compare
+
+</button>
+
+
+
+<button class="btn btn-primary mt-3">
+
+BOOK NOW
+
+</button>
+
 
 </div>
 
-</div>
 
 </div>
 
-</div>
 
 </div>
 
 
 
-<div class="card shadow-lg border-0 mt-4 p-4">
-
-<h2>
-
-<i class="bi bi-calculator"></i>
-
-Payment Calculator
-
-</h2>
 
 
 
-<div class="row mt-3">
+
+<!-- COMPARE -->
+
+
+<div class="card shadow p-4 mt-4">
+
+
+<h3>
+
+⚖ Compare Units
+
+</h3>
+
+
+<div id="compareBox">
+
+No Units Selected
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- CALCULATOR -->
+
+
+<div class="card shadow p-4 mt-4">
+
+
+<h3>
+
+💰 Payment Calculator
+
+</h3>
+
+
+
+<div class="row">
+
 
 <div class="col-md-4">
 
-<label>
-
-Down Payment
-
-</label>
-
-<input
-
-id="downPayment"
-
-type="number"
+<input id="downPayment"
 
 class="form-control"
 
-placeholder="500000">
+placeholder="Down Payment">
+
 
 </div>
 
 
-
 <div class="col-md-4">
 
-<label>
 
-Years
-
-</label>
-
-<select
-
-id="years"
+<select id="years"
 
 class="form-select">
+
+<option>6</option>
 
 <option>8</option>
 
 <option>10</option>
 
-<option>12</option>
+<option>11</option>
+
+<option>12.5</option>
 
 </select>
+
 
 </div>
 
@@ -306,17 +363,11 @@ class="form-select">
 
 <div class="col-md-4">
 
-<label>
 
-Payment Type
-
-</label>
-
-<select
-
-id="paymentType"
+<select id="paymentType"
 
 class="form-select">
+
 
 <option value="12">
 
@@ -324,11 +375,13 @@ Monthly
 
 </option>
 
+
 <option value="4">
 
 Quarterly
 
 </option>
+
 
 <option value="1">
 
@@ -336,45 +389,106 @@ Yearly
 
 </option>
 
+
 </select>
 
-</div>
 
 </div>
 
 
+</div>
 
-<button
 
-id="calculateBtn"
+<button id="calculateBtn"
 
-class="btn btn-primary w-100 mt-4">
+class="btn btn-dark w-100 mt-3">
 
-<i class="bi bi-calculator"></i>
-
-Calculate Installment
+Calculate
 
 </button>
 
 
+<h3 id="result"
 
-<div
+class="mt-4">
 
-id="result"
+</h3>
 
-class="result-box mt-4">
-
-Select Area First
 
 </div>
 
-</div>
+
+
+
+
+
+
+<!-- PROJECT INFO -->
+
+
+<div class="card shadow p-4 mt-4">
+
+
+<h3>
+
+📍 Locations & Amenities
+
+</h3>
+
+
+<p>
+
+Company Location:
+
+<span id="companyLocation"></span>
+
+</p>
+
+
+<p>
+
+Project Location:
+
+<span id="projectLocation"></span>
+
+</p>
+
+
+
+<h5>
+
+Nearby:
+
+</h5>
+
+
+<ul id="landmarks"></ul>
+
+
+
+<h5>
+
+Inside Compound:
+
+</h5>
+
+
+<ul id="amenities"></ul>
+
 
 </div>
 
+
+
+
+
+
+
+</div>
 
 
 <script src="script.js"></script>
+
 
 </body>
 
