@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -10,95 +9,48 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
-
 <nav class="navbar navbar-dark">
-
 <div class="container">
-
-<span class="navbar-brand fw-bold fs-3">
-
-🏢 Regency Inventory
-
-</span>
-
+<h2>🏢 Regency Inventory System</h2>
 
 <div>
-
-<button class="btn btn-light me-2">
-
-Sales Mode
-
-</button>
-
-
-<button class="btn btn-warning">
-
-Admin Mode
-
-</button>
-
+<button class="btn btn-light">Sales Mode</button>
+<button class="btn btn-warning">Admin Mode</button>
 </div>
 
-
 </div>
-
 </nav>
 
 
-
-<div class="container py-4">
+<div class="container mt-4">
 
 
 <div class="hero">
 
-<h1>
+<h1>Smart Property Finder</h1>
 
-Smart Property Finder
-
-</h1>
-
-<p>
-
-Complete Real Estate Sales System
-
-</p>
+<p>Real Estate Sales Platform</p>
 
 </div>
 
 
 
+<div class="card p-4 mt-4">
 
-<!-- SEARCH -->
-
-<div class="card shadow p-4 mt-4">
-
-
-<h3>
-
-🔍 Search Property
-
-</h3>
-
+<h3>Search Unit</h3>
 
 <div class="row">
 
 
-<div class="col-md-4">
+<div class="col-md-3">
 
-<label>
-
-Floor
-
-</label>
+<label>Floor</label>
 
 <select id="floorSelect" class="form-select">
 
@@ -110,13 +62,9 @@ Floor
 
 
 
-<div class="col-md-4">
+<div class="col-md-3">
 
-<label>
-
-Area
-
-</label>
+<label>Area</label>
 
 <select id="areaSelect" class="form-select">
 
@@ -128,27 +76,34 @@ Area
 
 
 
-<div class="col-md-4">
+<div class="col-md-3">
 
-<label>
+<label>Down Payment</label>
 
-Search Area
+<select id="dpSelect" class="form-select">
 
-</label>
+<option>0%</option>
+<option>10%</option>
+<option>20%</option>
+<option>30%</option>
 
-<select id="areaSearch" class="form-select">
+</select>
 
-<option>All Areas</option>
+</div>
 
-<option>45 SQM</option>
-<option>78 SQM</option>
-<option>90 SQM</option>
-<option>95 SQM</option>
-<option>115 SQM</option>
-<option>150 SQM</option>
-<option>190 SQM</option>
-<option>200 SQM</option>
 
+
+<div class="col-md-3">
+
+<label>Years</label>
+
+<select id="yearSelect" class="form-select">
+
+<option>6 Years</option>
+<option>8 Years</option>
+<option>10 Years</option>
+<option>11 Years</option>
+<option>12.5 Years</option>
 
 </select>
 
@@ -157,110 +112,66 @@ Search Area
 
 </div>
 
-
 </div>
 
 
 
 
 
-
-<!-- DETAILS -->
-
-
-<div class="card shadow p-4 mt-4">
-
+<div class="card p-4 mt-4">
 
 <div class="row">
 
 
-<div class="col-lg-6">
+<div class="col-md-6">
 
 
-<img id="unitImage"
-
-class="img-fluid rounded">
+<img id="unitImage" class="img-fluid rounded">
 
 
-<div id="gallery"
-
-class="d-flex gap-2 mt-3">
-
-</div>
+<div id="gallery" class="mt-3"></div>
 
 
 </div>
 
 
 
+<div class="col-md-6">
 
 
-<div class="col-lg-6">
+<h2 id="unitName">Select Unit</h2>
 
 
-<h2 id="unitName">
-
-Select Unit
-
-</h2>
-
-
-
-<hr>
-
-
-
-<p>
-
-<b>Area:</b>
-
-<span id="area"></span>
-
+<p>Area:
+<b id="area"></b>
 </p>
 
 
-
-<p>
-
-<b>Price:</b>
-
-<span id="price"></span>
-
+<p>Price:
+<b id="price"></b>
 </p>
 
 
-
-<p>
-
-<b>Status:</b>
-
-<span id="status"></span>
-
+<p>Status:
+<b id="status"></b>
 </p>
 
 
-
-<p>
-
-<b>Payment:</b>
-
-<span id="payment"></span>
-
+<p>Payment:
+<b id="payment"></b>
 </p>
 
 
+<button id="compareBtn" class="btn btn-success">
 
-<button class="btn btn-success mt-3">
-
-⭐ Add To Compare
+Add Compare
 
 </button>
 
 
+<button id="bookBtn" class="btn btn-primary">
 
-<button class="btn btn-primary mt-3">
-
-BOOK NOW
+Book Now
 
 </button>
 
@@ -270,149 +181,57 @@ BOOK NOW
 
 </div>
 
-
 </div>
 
 
 
 
 
+<div class="card p-4 mt-4">
 
-
-<!-- COMPARE -->
-
-
-<div class="card shadow p-4 mt-4">
-
-
-<h3>
-
-⚖ Compare Units
-
-</h3>
-
+<h3>Compare Units</h3>
 
 <div id="compareBox">
 
-No Units Selected
+No Units
+
+</div>
 
 </div>
 
 
-</div>
 
 
 
+<div class="card p-4 mt-4">
 
+<h3>Payment Calculator</h3>
 
-
-
-
-<!-- CALCULATOR -->
-
-
-<div class="card shadow p-4 mt-4">
-
-
-<h3>
-
-💰 Payment Calculator
-
-</h3>
-
-
-
-<div class="row">
-
-
-<div class="col-md-4">
 
 <input id="downPayment"
-
 class="form-control"
-
 placeholder="Down Payment">
 
 
-</div>
+<select id="paymentType" class="form-select mt-3">
 
+<option value="12">Monthly</option>
 
-<div class="col-md-4">
+<option value="4">Quarterly</option>
 
-
-<select id="years"
-
-class="form-select">
-
-<option>6</option>
-
-<option>8</option>
-
-<option>10</option>
-
-<option>11</option>
-
-<option>12.5</option>
+<option value="1">Yearly</option>
 
 </select>
 
 
-</div>
-
-
-
-<div class="col-md-4">
-
-
-<select id="paymentType"
-
-class="form-select">
-
-
-<option value="12">
-
-Monthly
-
-</option>
-
-
-<option value="4">
-
-Quarterly
-
-</option>
-
-
-<option value="1">
-
-Yearly
-
-</option>
-
-
-</select>
-
-
-</div>
-
-
-</div>
-
-
-<button id="calculateBtn"
-
-class="btn btn-dark w-100 mt-3">
+<button id="calculateBtn" class="btn btn-dark mt-3 w-100">
 
 Calculate
 
 </button>
 
 
-<h3 id="result"
-
-class="mt-4">
-
-</h3>
+<h3 id="result" class="mt-3"></h3>
 
 
 </div>
@@ -421,57 +240,68 @@ class="mt-4">
 
 
 
+<div class="card p-4 mt-4">
 
 
-<!-- PROJECT INFO -->
+<h3>Booking</h3>
 
 
-<div class="card shadow p-4 mt-4">
+<select id="bookingMethod" class="form-select">
+
+<option>Visa</option>
+
+<option>Cash</option>
+
+</select>
 
 
-<h3>
+<p id="cashMessage"></p>
 
-📍 Locations & Amenities
 
-</h3>
+
+<select id="salesSelect" class="form-select">
+
+<option>Select Sales</option>
+
+<option>Ahmed Mohamed</option>
+
+<option>Sara Ali</option>
+
+<option>Mahmoud Hassan</option>
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="card p-4 mt-4">
+
+
+<h3>Project Information</h3>
 
 
 <p>
-
 Company Location:
-
 <span id="companyLocation"></span>
-
 </p>
 
 
 <p>
-
 Project Location:
-
 <span id="projectLocation"></span>
-
 </p>
 
 
-
-<h5>
-
-Nearby:
-
-</h5>
-
+<h5>Nearby</h5>
 
 <ul id="landmarks"></ul>
 
 
-
-<h5>
-
-Inside Compound:
-
-</h5>
-
+<h5>Amenities</h5>
 
 <ul id="amenities"></ul>
 
@@ -481,15 +311,10 @@ Inside Compound:
 
 
 
-
-
-
 </div>
 
 
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
