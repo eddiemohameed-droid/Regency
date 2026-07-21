@@ -1,215 +1,281 @@
-let inventory = [];
-let selectedProperty = null;
+let projectData = null;
+let selectedUnit = null;
+
 
 const floorSelect = document.getElementById("floorSelect");
 const areaSelect = document.getElementById("areaSelect");
 
+
+// Load Data
+
 fetch("units.json")
+
 .then(response => response.json())
+
 .then(data => {
 
-    inventory = data;
+    projectData = data[0];
 
     loadFloors();
 
 });
+
+
+
+// Load Floors
 
 function loadFloors(){
 
     floorSelect.innerHTML =
     `<option value="">Select Floor</option>`;
 
-    inventory.forEach(item=>{
+
+    projectData.floors.forEach(floor=>{
+
 
         floorSelect.innerHTML +=
-        `<option value="${item.floor}">
-            ${item.floor}
-        </option>`;
+
+        `
+        <option value="${floor.name}">
+        ${floor.name}
+        </option>
+        `;
+
 
     });
 
+
 }
 
+
+
+
+// Floor Change
+
 floorSelect.addEventListener("change",()=>{
+
 
     areaSelect.innerHTML =
     `<option value="">Select Area</option>`;
 
-    clearData();
 
-    const floor =
-    inventory.find(x=>x.floor===floorSelect.value);
+    clearDetails();
+
+
+
+    let floor =
+    projectData.floors.find(
+        x=>x.name===floorSelect.value
+    );
+
 
     if(!floor) return;
 
-    floor.areas.forEach(area=>{
+
+
+    floor.units.forEach(unit=>{
+
 
         areaSelect.innerHTML +=
-        `<option value="${area.area}">
-            ${area.area}
-        </option>`;
+
+        `
+        <option value="${unit.id}">
+        ${unit.area}
+        </option>
+        `;
+
 
     });
 
+
+
 });
+
+
+
+
+// Area Change
 
 areaSelect.addEventListener("change",()=>{
 
-    const floor =
-    inventory.find(x=>x.floor===floorSelect.value);
 
-    if(!floor) return;
+    let floor =
+    projectData.floors.find(
+        x=>x.name===floorSelect.value
+    );
 
-    selectedProperty =
-    floor.areas.find(x=>x.area===areaSelect.value);
 
-    if(!selectedProperty) return;
+    selectedUnit =
+    floor.units.find(
+        x=>x.id===areaSelect.value
+    );
 
-    document.getElementById("unitName").innerHTML =
-    selectedProperty.type;
 
-    document.getElementById("area").innerHTML =
-    selectedProperty.area;
 
-    document.getElementById("price").innerHTML =
-    selectedProperty.price.toLocaleString() + " EGP";
+    showDetails();
 
-    const status =
-    document.getElementById("status");
-
-    status.innerHTML =
-    selectedProperty.status;
-
-    status.className = "";
-
-    if(selectedProperty.status==="Available"){
-
-        status.classList.add("available");
-
-    }
-
-    else if(selectedProperty.status==="Reserved"){
-
-        status.classList.add("reserved");
-
-    }
-
-    else{
-
-        status.classList.add("sold");
-
-    }
-
-    document.getElementById("payment").innerHTML =
-    selectedProperty.payment;
-
-    document.getElementById("unitImage").src =
-    selectedProperty.image;
 
 });
+
+
+
+
+
+function showDetails(){
+
+
+document.getElementById("unitName").innerHTML =
+
+selectedUnit.type;
+
+
+
+document.getElementById("area").innerHTML =
+
+selectedUnit.area;
+
+
+
+document.getElementById("price").innerHTML =
+
+selectedUnit.price.toLocaleString()+" EGP";
+
+
+
+let status =
+document.getElementById("status");
+
+
+status.innerHTML =
+selectedUnit.status;
+
+
+
+status.className =
+selectedUnit.status.toLowerCase();
+
+
+
+document.getElementById("payment").innerHTML =
+
+selectedUnit.paymentPlan;
+
+
+
+if(selectedUnit.gallery.length){
+
+document.getElementById("unitImage").src =
+selectedUnit.gallery[0];
+
+}
+
+
+
+}
+
+
+
+
+
+// Calculator
+
 
 document.getElementById("calculateBtn")
+
 .addEventListener("click",()=>{
 
-    if(!selectedProperty){
 
-        alert("Please select an area.");
+if(!selectedUnit){
 
-        return;
+alert("Select Unit First");
 
-    }
+return;
 
-    const down =
-    Number(document.getElementById("downPayment").value);
+}
 
-    if(down > selectedProperty.price){
 
-        alert("Down Payment can't be greater than Property Price.");
 
-        return;
+let down =
 
-    }
+Number(
+document.getElementById("downPayment").value
+);
 
-    const years =
-    Number(document.getElementById("years").value);
 
-    const paymentType =
-    Number(document.getElementById("paymentType").value);
 
-    const remaining =
-    selectedProperty.price - down;
+let years =
 
-    const installment =
-    remaining / (years * paymentType);
+Number(
+document.getElementById("years").value
+);
 
-    let title = "";
 
-    if(paymentType===12){
 
-        title="Monthly";
+let type =
 
-    }
+Number(
+document.getElementById("paymentType").value
+);
 
-    else if(paymentType===4){
 
-        title="Quarterly";
 
-    }
+let remaining =
 
-    else{
+selectedUnit.price - down;
 
-        title="Yearly";
 
-    }
 
-    document.getElementById("result").innerHTML =
+let installment =
 
-    `
-    <div class="row text-center">
+remaining/(years*type);
 
-        <div class="col-md-6">
 
-            <h5>Remaining</h5>
 
-            <h3 style="color:#0d6efd;">
-            ${remaining.toLocaleString()} EGP
-            </h3>
+document.getElementById("result").innerHTML =
 
-        </div>
+`
+Remaining:
+${remaining.toLocaleString()} EGP
 
-        <div class="col-md-6">
+<br><br>
 
-            <h5>${title} Installment</h5>
+Installment:
 
-            <h3 style="color:#198754;">
-            ${Math.round(installment).toLocaleString()} EGP
-            </h3>
+${Math.round(installment).toLocaleString()} EGP
 
-        </div>
+`;
 
-    </div>
-    `;
+
 
 });
 
-function clearData(){
 
-    selectedProperty = null;
 
-    document.getElementById("unitName").innerHTML =
-    "Select Area";
 
-    document.getElementById("area").innerHTML = "";
 
-    document.getElementById("price").innerHTML = "";
+function clearDetails(){
 
-    document.getElementById("status").innerHTML = "";
 
-    document.getElementById("payment").innerHTML = "";
+selectedUnit=null;
 
-    document.getElementById("unitImage").src = "";
 
-    document.getElementById("result").innerHTML =
-    "Select Area First";
+document.getElementById("unitName").innerHTML =
+"Select Area";
+
+
+document.getElementById("area").innerHTML="";
+
+
+document.getElementById("price").innerHTML="";
+
+
+document.getElementById("status").innerHTML="";
+
+
+document.getElementById("payment").innerHTML="";
+
+
+document.getElementById("unitImage").src="";
+
 
 }
