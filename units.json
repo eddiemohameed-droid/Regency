@@ -1,37 +1,141 @@
 [
   {
     "project": "Regency Tower II",
-    "floor": "Ground Floor",
-    "areas": [
+
+    "projectLocation": "New Capital - Downtown",
+
+    "companyLocation": "New Cairo - Fifth Settlement",
+
+    "landmarks": [
+      "German International University",
+      "Future University",
+      "Downtown Mall",
+      "Open Air Mall",
+      "Premium Cafes & Restaurants"
+    ],
+
+    "amenities": [
+      "Kids Area",
+      "Green Landscapes",
+      "24/7 Security",
+      "Quiet Environment"
+    ],
+
+    "salesTeam": [
+      "Ahmed Mohamed",
+      "Sara Ali",
+      "Mahmoud Hassan"
+    ],
+
+    "floors": [
       {
-        "area": "75 SQM",
-        "type": "Retail Shop",
-        "price": 3200000,
-        "status": "Available",
-        "payment": "10% DP - 8 Years",
-        "image": "images/ground75.jpg"
+        "name": "Ground Floor",
+
+        "units": [
+
+          {
+            "id": "G001",
+            "area": "90 SQM",
+            "type": "Retail",
+            "price": 4500000,
+            "status": "Available",
+
+            "downPayment": [
+              "0%",
+              "10%",
+              "20%",
+              "30%"
+            ],
+
+            "years": [
+              "6 Years",
+              "8 Years",
+              "10 Years",
+              "11 Years",
+              "12.5 Years"
+            ],
+
+            "paymentPlan": "10% Down Payment - 8 Years",
+
+            "gallery": [
+              "images/unit1.jpg",
+              "images/unit2.jpg",
+              "images/floorplan.jpg"
+            ]
+          },
+
+
+          {
+            "id": "G002",
+            "area": "150 SQM",
+            "type": "Retail",
+            "price": 7500000,
+            "status": "Available",
+
+            "downPayment": [
+              "0%",
+              "10%",
+              "20%",
+              "30%"
+            ],
+
+            "years": [
+              "6 Years",
+              "8 Years",
+              "10 Years",
+              "11 Years",
+              "12.5 Years"
+            ],
+
+            "paymentPlan": "20% Down Payment - 10 Years",
+
+            "gallery": [
+              "images/unit3.jpg",
+              "images/unit4.jpg"
+            ]
+          }
+
+        ]
       },
+
+
       {
-        "area": "95 SQM",
-        "type": "Retail Shop",
-        "price": 4150000,
-        "status": "Available",
-        "payment": "10% DP - 8 Years",
-        "image": "images/ground95.jpg"
-      }
-    ]
-  },
-  {
-    "project": "Regency Tower II",
-    "floor": "First Floor",
-    "areas": [
-      {
-        "area": "95 SQM",
-        "type": "Clinic",
-        "price": 4550000,
-        "status": "Reserved",
-        "payment": "15% DP - 10 Years",
-        "image": "images/first95.jpg"
+        "name": "First Floor",
+
+        "units": [
+
+          {
+            "id": "F101",
+            "area": "95 SQM",
+            "type": "Clinic",
+            "price": 5800000,
+            "status": "Available",
+
+            "downPayment": [
+              "0%",
+              "10%",
+              "20%",
+              "30%"
+            ],
+
+            "years": [
+              "6 Years",
+              "8 Years",
+              "10 Years",
+              "11 Years",
+              "12.5 Years"
+            ],
+
+            "paymentPlan": "10% Down Payment - 8 Years",
+
+            "gallery": [
+              "images/unit5.jpg",
+              "images/unit6.jpg",
+              "images/floorplan.jpg"
+            ]
+          }
+
+        ]
       }
     ]
   }
