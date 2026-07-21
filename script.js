@@ -1,23 +1,24 @@
-let project = null;
+let data = null;
 let selectedUnit = null;
-let compareList = [];
 
-const floorSelect = document.getElementById("floorSelect");
+
+
 const areaSelect = document.getElementById("areaSelect");
+const floorSelect = document.getElementById("floorSelect");
 
 
 
-// LOAD DATA
+// LOAD JSON
 
 fetch("units.json")
 
-.then(res => res.json())
+.then(res=>res.json())
 
-.then(data => {
+.then(result=>{
 
-project = data[0];
+data=result[0];
 
-loadFloors();
+loadAreas();
 
 loadInfo();
 
@@ -27,28 +28,31 @@ loadInfo();
 
 
 
-// LOAD FLOORS
+// LOAD AREAS
 
-function loadFloors(){
+function loadAreas(){
 
-floorSelect.innerHTML =
+
+areaSelect.innerHTML=
 `
-<option>Select Floor</option>
+<option>Select Area</option>
 `;
 
-project.floors.forEach(floor=>{
+
+data.areas.forEach(area=>{
 
 
-floorSelect.innerHTML +=
+areaSelect.innerHTML +=
 
 `
-<option value="${floor.name}">
-${floor.name}
+<option value="${area.name}">
+${area.name}
 </option>
-`;
 
+`;
 
 });
+
 
 }
 
@@ -57,74 +61,43 @@ ${floor.name}
 
 
 
-// FLOOR CHANGE
-
-floorSelect.addEventListener("change",()=>{
-
-
-areaSelect.innerHTML =
-`
-<option>Select Area</option>
-`;
-
-
-
-let floor =
-project.floors.find(
-x=>x.name===floorSelect.value
-);
-
-
-
-if(!floor)return;
-
-
-
-floor.units.forEach(unit=>{
-
-
-areaSelect.innerHTML +=
-
-`
-<option value="${unit.id}">
-${unit.area}
-</option>
-`;
-
-
-
-});
-
-
-});
-
-
-
-
-
-
-
-// AREA CHANGE
+// AREA SELECT
 
 
 areaSelect.addEventListener("change",()=>{
 
 
-let floor =
-project.floors.find(
-x=>x.name===floorSelect.value
+floorSelect.innerHTML=
+`
+<option>Select Floor</option>
+`;
+
+
+let area =
+data.areas.find(
+x=>x.name===areaSelect.value
 );
 
 
 
-selectedUnit =
-floor.units.find(
-x=>x.id===areaSelect.value
-);
+if(!area)return;
 
 
 
-showUnit();
+area.units.forEach(unit=>{
+
+
+floorSelect.innerHTML +=
+
+`
+<option value="${unit.id}">
+${unit.floor}
+</option>
+
+`;
+
+
+});
 
 
 });
@@ -135,7 +108,43 @@ showUnit();
 
 
 
-function showUnit(){
+// FLOOR SELECT
+
+
+floorSelect.addEventListener("change",()=>{
+
+
+let area =
+data.areas.find(
+x=>x.name===areaSelect.value
+);
+
+
+
+selectedUnit =
+area.units.find(
+x=>x.id===floorSelect.value
+);
+
+
+
+showDetails();
+
+
+});
+
+
+
+
+
+
+
+function showDetails(){
+
+
+document.getElementById("detailsSection")
+.style.display="block";
+
 
 
 document.getElementById("unitName").innerHTML =
@@ -144,13 +153,12 @@ selectedUnit.type;
 
 
 document.getElementById("area").innerHTML =
-selectedUnit.area;
+selectedUnit.floor;
 
 
 
 document.getElementById("price").innerHTML =
-selectedUnit.price.toLocaleString()
-+" EGP";
+selectedUnit.price.toLocaleString()+" EGP";
 
 
 
@@ -164,16 +172,14 @@ selectedUnit.paymentPlan;
 
 
 
-
 document.getElementById("unitImage").src =
 selectedUnit.gallery[0];
 
 
 
-
-
 let gallery =
 document.getElementById("gallery");
+
 
 gallery.innerHTML="";
 
@@ -190,6 +196,7 @@ gallery.innerHTML +=
 onclick="changeImage('${img}')">
 
 `;
+
 
 });
 
@@ -215,17 +222,16 @@ document.getElementById("unitImage").src=img;
 
 
 
-// COMPARE
+// BOOK NOW
 
 
-document.getElementById("compareBtn")
+document.getElementById("bookBtn")
 .onclick=function(){
-
 
 
 if(!selectedUnit){
 
-alert("Select Unit First");
+alert("Please select area and floor first");
 
 return;
 
@@ -233,21 +239,8 @@ return;
 
 
 
-if(compareList.length>=3){
-
-alert("Maximum 3 Units");
-
-return;
-
-}
-
-
-
-compareList.push(selectedUnit);
-
-
-
-showCompare();
+document.getElementById("bookingBox")
+.style.display="block";
 
 
 };
@@ -257,63 +250,84 @@ showCompare();
 
 
 
-function showCompare(){
 
 
-let box =
-document.getElementById("compareBox");
+// CONFIRM BOOKING
 
 
-box.innerHTML="";
+document.getElementById("confirmBooking")
+.onclick=function(){
 
 
 
-compareList.forEach(unit=>{
+let sales =
+document.getElementById("salesSelect").value;
 
 
-box.innerHTML +=
-
-`
-
-<div class="compare-card">
-
-<h4>
-${unit.type}
-</h4>
-
-<p>
-${unit.area}
-</p>
+let payment =
+document.getElementById("paymentMethod").value;
 
 
-<p>
-${unit.price.toLocaleString()} EGP
-</p>
 
 
-<p>
-${unit.status}
-</p>
+if(sales==="Select Sales"){
+
+alert("Select Sales Representative");
+
+return;
+
+}
 
 
-</div>
 
-`;
+if(payment==="Select Payment"){
 
-});
+alert("Select Payment Method");
 
+return;
 
 }
 
 
 
 
+document.getElementById("bookingResult").innerHTML=
+
+
+`
+
+<h4 style="color:green">
+
+✅ Reservation Completed
+
+</h4>
+
+
+Sales:
+${sales}
+
+
+<br>
+
+
+Payment:
+${payment}
+
+`;
+
+
+
+};
 
 
 
 
 
-// CALCULATOR
+
+
+
+
+// CALCULATOR BUTTON
 
 
 document.getElementById("calculateBtn")
@@ -323,7 +337,7 @@ document.getElementById("calculateBtn")
 
 if(!selectedUnit){
 
-alert("Select Unit");
+alert("Please select unit first");
 
 return;
 
@@ -356,7 +370,7 @@ remaining/(10*type);
 
 
 
-document.getElementById("result").innerHTML=
+document.getElementById("calculatorResult").innerHTML=
 
 `
 
@@ -381,177 +395,29 @@ ${Math.round(installment).toLocaleString()} EGP
 
 
 
-
-// BOOK NOW
-
-
-document.getElementById("bookBtn")
-.onclick=function(){
-
-
-let box =
-document.getElementById("bookingBox");
-
-
-if(box.style.display==="none"){
-
-box.style.display="block";
-
-}
-
-else{
-
-box.style.display="none";
-
-}
-
-
-};
-
-
-
-
-
-
-
-// VISA / CASH
-
-
-document.getElementById("bookingMethod")
-.onchange=function(){
-
-
-let msg =
-document.getElementById("bookingMessage");
-
-
-
-if(this.value==="Cash"){
-
-
-msg.innerHTML=
-
-`
-⚠️ Cash Reservation
-
-You have 7 days to visit Regency office
-and pay 50,000 EGP reservation fees.
-
-`;
-
-}
-
-
-else{
-
-
-msg.innerHTML=
-
-`
-Visa Payment Selected
-
-`;
-
-}
-
-
-
-};
-
-
-
-
-
-
-
-
-// CONFIRM
-
-
-document.getElementById("confirmBooking")
-.onclick=function(){
-
-
-let sales =
-document.getElementById("salesSelect").value;
-
-
-
-let method =
-document.getElementById("bookingMethod").value;
-
-
-
-if(sales==="Select Sales Representative"){
-
-
-alert("Select Sales Representative");
-
-return;
-
-
-}
-
-
-
-document.getElementById("bookingMessage").innerHTML=
-
-`
-
-<h4 style="color:#d4af37">
-
-✅ Reservation Completed
-
-</h4>
-
-
-Sales:
-${sales}
-
-<br>
-
-Payment:
-${method}
-
-`;
-
-
-
-};
-
-
-
-
-
-
-
-
-// INFO
+// PROJECT INFO
 
 
 function loadInfo(){
 
 
-
 document.getElementById("companyLocation").innerHTML =
-project.companyLocation;
-
+data.companyLocation;
 
 
 document.getElementById("projectLocation").innerHTML =
-project.projectLocation;
+data.projectLocation;
 
 
 
 
-
-project.landmarks.forEach(item=>{
+data.landmarks.forEach(x=>{
 
 
 document.getElementById("landmarks").innerHTML +=
 
 `
-<li>${item}</li>
+<li>${x}</li>
 `;
 
 });
@@ -559,18 +425,16 @@ document.getElementById("landmarks").innerHTML +=
 
 
 
-
-project.amenities.forEach(item=>{
+data.amenities.forEach(x=>{
 
 
 document.getElementById("amenities").innerHTML +=
 
 `
-<li>${item}</li>
+<li>${x}</li>
 `;
 
 });
-
 
 
 }
