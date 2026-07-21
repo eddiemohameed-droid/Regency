@@ -336,6 +336,19 @@ You have <b>3 days</b> to visit the company and complete the reservation payment
 50,000 EGP
 </h3>
 
+
+<hr>
+
+
+<h5>
+📍 Company Location
+</h5>
+
+
+<p>
+Mall 220 Second Sector, First Floor, North 90th, Cairo Governorate 11865
+</p>
+
 `;
 
 
@@ -371,16 +384,24 @@ Visa
 Visa payment reservation completed successfully.
 </p>
 
+
+<hr>
+
+
+<h5>
+📍 Company Location
+</h5>
+
+
+<p>
+Mall 220 Second Sector, First Floor, North 90th, Cairo Governorate 11865
+</p>
+
 `;
 
 
 
 }
-
-
-
-};
-
 
 
 
