@@ -2,15 +2,13 @@ let projects = [];
 let selectedUnit = null;
 
 
-
 const projectSelect = document.getElementById("projectSelect");
 const areaSelect = document.getElementById("areaSelect");
 const floorSelect = document.getElementById("floorSelect");
 
 
 
-
-// LOAD JSON
+// LOAD DATA
 
 fetch("units.json")
 
@@ -27,9 +25,6 @@ loadProject();
 
 
 
-
-
-
 // PROJECT CHANGE
 
 projectSelect.addEventListener("change",()=>{
@@ -42,15 +37,11 @@ loadProject();
 
 
 
-
-
 function loadProject(){
 
 
 let project = projects.find(
-
 x => x.project === projectSelect.value
-
 );
 
 
@@ -93,6 +84,13 @@ ${project.location}
 
 
 
+document.getElementById("mapFrame").src =
+
+"https://www.google.com/maps?q="
++ encodeURIComponent(project.location)
++ "&output=embed";
+
+
 }
 
 
@@ -101,17 +99,13 @@ ${project.location}
 
 
 
-
-
-// AREA CHANGE
+// AREA
 
 areaSelect.addEventListener("change",()=>{
 
 
 let project = projects.find(
-
 x=>x.project===projectSelect.value
-
 );
 
 
@@ -121,6 +115,7 @@ let area = project.areas[areaSelect.value];
 
 
 floorSelect.innerHTML =
+
 `
 <option>Select Floor</option>
 `;
@@ -150,17 +145,13 @@ ${unit.floor}
 
 
 
-
-
-// FLOOR CHANGE
+// FLOOR
 
 floorSelect.addEventListener("change",()=>{
 
 
 let project = projects.find(
-
 x=>x.project===projectSelect.value
-
 );
 
 
@@ -172,12 +163,10 @@ let area = project.areas[areaSelect.value];
 selectedUnit = area.units[floorSelect.value];
 
 
-
 showUnit();
 
 
 });
-
 
 
 
@@ -195,51 +184,37 @@ document.getElementById("detailsSection")
 
 
 document.getElementById("unitName").innerHTML =
-
 selectedUnit.type;
 
 
 
 document.getElementById("area").innerHTML =
-
-selectedUnit.area || areaSelect.options[areaSelect.selectedIndex].text;
+areaSelect.options[areaSelect.selectedIndex].text;
 
 
 
 document.getElementById("price").innerHTML =
-
 selectedUnit.price.toLocaleString()+" EGP";
 
 
 
 document.getElementById("status").innerHTML =
-
 selectedUnit.status;
 
 
 
 document.getElementById("payment").innerHTML =
-
 selectedUnit.paymentPlan;
 
 
 
-
-
 document.getElementById("unitImage").src =
-
 selectedUnit.gallery[0];
 
 
 
-
-
-// calculator price
-
 document.getElementById("unitPrice").value =
-
 selectedUnit.price.toLocaleString()+" EGP";
-
 
 
 }
@@ -268,12 +243,12 @@ return;
 }
 
 
+
 document.getElementById("bookingBox")
 .style.display="block";
 
 
 };
-
 
 
 
@@ -300,6 +275,7 @@ document.getElementById("paymentMethod").value;
 
 
 
+
 if(sales==="Select Sales"){
 
 alert("Select Sales Representative");
@@ -321,14 +297,18 @@ return;
 
 
 
+if(payment==="Cash"){
+
+
 document.getElementById("bookingResult").innerHTML =
 
+
 `
+
 <h4 style="color:green">
-
 ✅ Reservation Completed
-
 </h4>
+
 
 Sales:
 ${sales}
@@ -336,9 +316,66 @@ ${sales}
 <br>
 
 Payment:
-${payment}
+Cash
+
+
+<hr>
+
+
+<h5>
+Cash Reservation Instructions
+</h5>
+
+
+<p>
+You have <b>3 days</b> to visit the company and complete the reservation payment.
+</p>
+
+
+<h3 style="color:#C9A227">
+50,000 EGP
+</h3>
 
 `;
+
+
+
+}
+
+else{
+
+
+document.getElementById("bookingResult").innerHTML =
+
+
+`
+
+<h4 style="color:green">
+✅ Reservation Completed
+</h4>
+
+
+Sales:
+${sales}
+
+<br>
+
+Payment:
+Visa
+
+
+<hr>
+
+
+<p>
+Visa payment reservation completed successfully.
+</p>
+
+`;
+
+
+
+}
 
 
 
@@ -359,7 +396,6 @@ document.getElementById("calculateBtn")
 .onclick=function(){
 
 
-
 if(!selectedUnit){
 
 alert("Select unit first");
@@ -370,63 +406,39 @@ return;
 
 
 
-
-let downPayment =
-
-Number(
-
-document.getElementById("downPayment").value
-
-) || 0;
-
-
+let down =
+Number(document.getElementById("downPayment").value) || 0;
 
 
 let years =
-
-Number(
-
-document.getElementById("years").value
-
-);
+Number(document.getElementById("years").value);
 
 
 
-let paymentType =
-
-Number(
-
-document.getElementById("paymentType").value
-
-);
-
-
+let frequency =
+Number(document.getElementById("paymentType").value);
 
 
 
 let remaining =
-
-selectedUnit.price - downPayment;
-
-
+selectedUnit.price - down;
 
 
 
 let installment =
-
-remaining / (years * paymentType);
-
+remaining / (years * frequency);
 
 
 
 
 document.getElementById("calculatorResult").innerHTML =
 
+
 `
 
-<div>
-
-<h5>Remaining Amount</h5>
+<h5>
+Remaining Amount
+</h5>
 
 <h4>
 ${remaining.toLocaleString()} EGP
@@ -436,13 +448,14 @@ ${remaining.toLocaleString()} EGP
 <hr>
 
 
-<h5>Installment</h5>
+<h5>
+Installment
+</h5>
+
 
 <h4>
 ${Math.round(installment).toLocaleString()} EGP
 </h4>
-
-</div>
 
 `;
 
@@ -459,7 +472,6 @@ ${Math.round(installment).toLocaleString()} EGP
 
 // ADMIN MODE
 
-
 document.getElementById("adminMode")
 .onclick=function(){
 
@@ -470,8 +482,8 @@ document.getElementById("adminPanel").style.display="block";
 
 
 
-// SALES MODE
 
+// SALES MODE
 
 document.getElementById("salesMode")
 .onclick=function(){
