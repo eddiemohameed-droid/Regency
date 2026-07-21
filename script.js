@@ -8,10 +8,12 @@ const floorSelect = document.getElementById("floorSelect");
 
 
 
-// LOAD DATA
+// LOAD JSON
 
 fetch("units.json")
+
 .then(res => res.json())
+
 .then(data => {
 
 projects = data;
@@ -23,7 +25,8 @@ loadProject();
 
 
 
-// PROJECT CHANGE
+
+// PROJECT
 
 projectSelect.addEventListener("change",()=>{
 
@@ -34,13 +37,13 @@ loadProject();
 
 
 
-
 function loadProject(){
 
 
-let project =
-projects.find(
-x=>x.project === projectSelect.value
+let project = projects.find(
+
+x => x.project === projectSelect.value
+
 );
 
 
@@ -66,6 +69,7 @@ areaSelect.innerHTML +=
 <option value="${index}">
 ${area.name}
 </option>
+
 `;
 
 });
@@ -90,7 +94,9 @@ ${project.location}
 
 
 
-// AREA SELECT
+
+
+// AREA
 
 
 areaSelect.addEventListener("change",()=>{
@@ -98,7 +104,9 @@ areaSelect.addEventListener("change",()=>{
 
 let project =
 projects.find(
+
 x=>x.project===projectSelect.value
+
 );
 
 
@@ -127,8 +135,7 @@ ${area.floor}
 
 
 
-
-// FLOOR SELECT
+// FLOOR
 
 
 floorSelect.addEventListener("change",()=>{
@@ -136,15 +143,15 @@ floorSelect.addEventListener("change",()=>{
 
 let project =
 projects.find(
+
 x=>x.project===projectSelect.value
+
 );
 
 
 
 let area =
-project.areas.find(
-x=>x.name===areaSelect.options[areaSelect.selectedIndex].text
-);
+project.areas[areaSelect.selectedIndex-1];
 
 
 
@@ -167,6 +174,7 @@ showUnit();
 function showUnit(){
 
 
+
 document.getElementById("detailsSection")
 .style.display="block";
 
@@ -186,8 +194,7 @@ selectedUnit.name;
 
 document.getElementById("price").innerHTML =
 
-selectedUnit.price.toLocaleString()
-+" EGP";
+selectedUnit.price.toLocaleString()+" EGP";
 
 
 
@@ -199,7 +206,7 @@ document.getElementById("status").innerHTML =
 
 document.getElementById("payment").innerHTML =
 
-"10% Down Payment - 10 Years";
+"Flexible Payment Plan";
 
 
 
@@ -207,6 +214,13 @@ document.getElementById("unitImage").src =
 
 "images/unit1.jpg";
 
+
+
+// Calculator Price
+
+document.getElementById("unitPrice").value =
+
+selectedUnit.price.toLocaleString()+" EGP";
 
 
 }
@@ -227,11 +241,12 @@ document.getElementById("bookBtn")
 
 if(!selectedUnit){
 
-alert("Please select Area first");
+alert("Please select unit first");
 
 return;
 
 }
+
 
 
 document.getElementById("bookingBox")
@@ -248,27 +263,25 @@ document.getElementById("bookingBox")
 
 
 
-// CONFIRM BOOKING
+// CONFIRM
 
 
 document.getElementById("confirmBooking")
 .onclick=function(){
 
 
-
 let sales =
 document.getElementById("salesSelect").value;
 
 
-let payment =
+let method =
 document.getElementById("paymentMethod").value;
-
 
 
 
 if(sales==="Select Sales"){
 
-alert("Select Sales");
+alert("Please select Sales");
 
 return;
 
@@ -276,24 +289,27 @@ return;
 
 
 
-if(payment==="Select Payment"){
+if(method==="Select Payment"){
 
-alert("Select Payment Method");
+alert("Please select Payment");
 
 return;
 
 }
+
 
 
 
 document.getElementById("bookingResult").innerHTML =
 
 `
+
 <h4 style="color:green">
 
 ✅ Reservation Completed
 
 </h4>
+
 
 Sales:
 ${sales}
@@ -301,7 +317,7 @@ ${sales}
 <br>
 
 Payment:
-${payment}
+${method}
 
 `;
 
@@ -327,7 +343,7 @@ document.getElementById("calculateBtn")
 
 if(!selectedUnit){
 
-alert("Select Unit First");
+alert("Please select unit first");
 
 return;
 
@@ -336,42 +352,75 @@ return;
 
 
 let down =
-Number(document.getElementById("downPayment").value);
 
+Number(
 
+document.getElementById("downPayment").value
 
-let paymentType =
-Number(document.getElementById("paymentType").value);
+);
 
 
 
 let years =
-10;
+
+Number(
+
+document.getElementById("years").value
+
+);
+
+
+
+let frequency =
+
+Number(
+
+document.getElementById("paymentType").value
+
+);
+
 
 
 
 let remaining =
+
 selectedUnit.price - down;
 
 
 
+
 let installment =
-remaining/(years*paymentType);
+
+remaining / (years * frequency);
+
+
 
 
 
 document.getElementById("calculatorResult").innerHTML =
 
 `
-Remaining Amount:
-<br>
+
+<h5>
+Remaining Amount
+</h5>
+
+<h4>
 ${remaining.toLocaleString()} EGP
+</h4>
+
 
 <hr>
 
-Installment:
-<br>
+
+<h5>
+Installment
+</h5>
+
+
+<h4>
 ${Math.round(installment).toLocaleString()} EGP
+</h4>
 
 `;
 
@@ -393,7 +442,10 @@ ${Math.round(installment).toLocaleString()} EGP
 document.getElementById("adminMode")
 .onclick=function(){
 
-alert("Admin Mode Enabled");
+
+document.getElementById("adminPanel")
+.style.display="block";
+
 
 };
 
@@ -406,6 +458,9 @@ alert("Admin Mode Enabled");
 document.getElementById("salesMode")
 .onclick=function(){
 
-alert("Sales Mode Enabled");
+
+document.getElementById("adminPanel")
+.style.display="none";
+
 
 };
