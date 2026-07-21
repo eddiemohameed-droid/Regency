@@ -2,9 +2,11 @@ let projects = [];
 let selectedUnit = null;
 
 
+
 const projectSelect = document.getElementById("projectSelect");
 const areaSelect = document.getElementById("areaSelect");
 const floorSelect = document.getElementById("floorSelect");
+
 
 
 
@@ -26,13 +28,18 @@ loadProject();
 
 
 
-// PROJECT
+
+
+// PROJECT CHANGE
 
 projectSelect.addEventListener("change",()=>{
 
 loadProject();
 
 });
+
+
+
 
 
 
@@ -96,14 +103,12 @@ ${project.location}
 
 
 
-// AREA
-
+// AREA CHANGE
 
 areaSelect.addEventListener("change",()=>{
 
 
-let project =
-projects.find(
+let project = projects.find(
 
 x=>x.project===projectSelect.value
 
@@ -111,19 +116,30 @@ x=>x.project===projectSelect.value
 
 
 
-let area =
-project.areas[areaSelect.value];
+let area = project.areas[areaSelect.value];
 
 
 
 floorSelect.innerHTML =
-
 `
-<option value="${area.name}">
-${area.floor}
-</option>
+<option>Select Floor</option>
 `;
 
+
+
+area.units.forEach((unit,index)=>{
+
+
+floorSelect.innerHTML +=
+
+`
+<option value="${index}">
+${unit.floor}
+</option>
+
+`;
+
+});
 
 
 });
@@ -135,14 +151,13 @@ ${area.floor}
 
 
 
-// FLOOR
 
+// FLOOR CHANGE
 
 floorSelect.addEventListener("change",()=>{
 
 
-let project =
-projects.find(
+let project = projects.find(
 
 x=>x.project===projectSelect.value
 
@@ -150,12 +165,11 @@ x=>x.project===projectSelect.value
 
 
 
-let area =
-project.areas[areaSelect.selectedIndex-1];
+let area = project.areas[areaSelect.value];
 
 
 
-selectedUnit = area;
+selectedUnit = area.units[floorSelect.value];
 
 
 
@@ -171,8 +185,8 @@ showUnit();
 
 
 
-function showUnit(){
 
+function showUnit(){
 
 
 document.getElementById("detailsSection")
@@ -182,13 +196,13 @@ document.getElementById("detailsSection")
 
 document.getElementById("unitName").innerHTML =
 
-selectedUnit.name;
+selectedUnit.type;
 
 
 
 document.getElementById("area").innerHTML =
 
-selectedUnit.name;
+selectedUnit.area || areaSelect.options[areaSelect.selectedIndex].text;
 
 
 
@@ -200,30 +214,36 @@ selectedUnit.price.toLocaleString()+" EGP";
 
 document.getElementById("status").innerHTML =
 
-"Available";
+selectedUnit.status;
 
 
 
 document.getElementById("payment").innerHTML =
 
-"Flexible Payment Plan";
+selectedUnit.paymentPlan;
+
+
 
 
 
 document.getElementById("unitImage").src =
 
-"images/unit1.jpg";
+selectedUnit.gallery[0];
 
 
 
-// Calculator Price
+
+
+// calculator price
 
 document.getElementById("unitPrice").value =
 
 selectedUnit.price.toLocaleString()+" EGP";
 
 
+
 }
+
 
 
 
@@ -248,7 +268,6 @@ return;
 }
 
 
-
 document.getElementById("bookingBox")
 .style.display="block";
 
@@ -263,25 +282,27 @@ document.getElementById("bookingBox")
 
 
 
-// CONFIRM
+// CONFIRM BOOKING
 
 
 document.getElementById("confirmBooking")
 .onclick=function(){
 
 
+
 let sales =
 document.getElementById("salesSelect").value;
 
 
-let method =
+
+let payment =
 document.getElementById("paymentMethod").value;
 
 
 
 if(sales==="Select Sales"){
 
-alert("Please select Sales");
+alert("Select Sales Representative");
 
 return;
 
@@ -289,9 +310,9 @@ return;
 
 
 
-if(method==="Select Payment"){
+if(payment==="Select Payment"){
 
-alert("Please select Payment");
+alert("Select Payment Method");
 
 return;
 
@@ -303,13 +324,11 @@ return;
 document.getElementById("bookingResult").innerHTML =
 
 `
-
 <h4 style="color:green">
 
 ✅ Reservation Completed
 
 </h4>
-
 
 Sales:
 ${sales}
@@ -317,7 +336,7 @@ ${sales}
 <br>
 
 Payment:
-${method}
+${payment}
 
 `;
 
@@ -343,7 +362,7 @@ document.getElementById("calculateBtn")
 
 if(!selectedUnit){
 
-alert("Please select unit first");
+alert("Select unit first");
 
 return;
 
@@ -351,13 +370,15 @@ return;
 
 
 
-let down =
+
+let downPayment =
 
 Number(
 
 document.getElementById("downPayment").value
 
-);
+) || 0;
+
 
 
 
@@ -371,7 +392,7 @@ document.getElementById("years").value
 
 
 
-let frequency =
+let paymentType =
 
 Number(
 
@@ -382,16 +403,18 @@ document.getElementById("paymentType").value
 
 
 
+
 let remaining =
 
-selectedUnit.price - down;
+selectedUnit.price - downPayment;
+
 
 
 
 
 let installment =
 
-remaining / (years * frequency);
+remaining / (years * paymentType);
 
 
 
@@ -401,9 +424,9 @@ document.getElementById("calculatorResult").innerHTML =
 
 `
 
-<h5>
-Remaining Amount
-</h5>
+<div>
+
+<h5>Remaining Amount</h5>
 
 <h4>
 ${remaining.toLocaleString()} EGP
@@ -413,14 +436,13 @@ ${remaining.toLocaleString()} EGP
 <hr>
 
 
-<h5>
-Installment
-</h5>
-
+<h5>Installment</h5>
 
 <h4>
 ${Math.round(installment).toLocaleString()} EGP
 </h4>
+
+</div>
 
 `;
 
@@ -435,17 +457,13 @@ ${Math.round(installment).toLocaleString()} EGP
 
 
 
-
 // ADMIN MODE
 
 
 document.getElementById("adminMode")
 .onclick=function(){
 
-
-document.getElementById("adminPanel")
-.style.display="block";
-
+document.getElementById("adminPanel").style.display="block";
 
 };
 
@@ -458,9 +476,6 @@ document.getElementById("adminPanel")
 document.getElementById("salesMode")
 .onclick=function(){
 
-
-document.getElementById("adminPanel")
-.style.display="none";
-
+document.getElementById("adminPanel").style.display="none";
 
 };
