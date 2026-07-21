@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,106 +14,154 @@
 
 </head>
 
+
 <body>
 
-<nav class="navbar navbar-dark">
+
+<nav class="navbar">
+
 <div class="container">
-<h2>🏢 Regency Inventory System</h2>
+
+<h2>
+🏢 REGENCY INVENTORY
+</h2>
+
 
 <div>
-<button class="btn btn-light">Sales Mode</button>
-<button class="btn btn-warning">Admin Mode</button>
-</div>
+
+<button class="btn btn-primary">
+Sales Mode
+</button>
+
+
+<button class="btn btn-warning">
+Admin Mode
+</button>
+
 
 </div>
+
+
+</div>
+
 </nav>
 
 
-<div class="container mt-4">
+
+
+
+<div class="container py-4">
+
 
 
 <div class="hero">
 
-<h1>Smart Property Finder</h1>
+<h1>
+Smart Property Finder
+</h1>
 
-<p>Real Estate Sales Platform</p>
+<p>
+Premium Real Estate Sales System
+</p>
 
 </div>
 
 
 
+
+
+
+
 <div class="card p-4 mt-4">
 
-<h3>Search Unit</h3>
+
+<h3>
+Search Unit
+</h3>
+
 
 <div class="row">
 
 
-<div class="col-md-3">
+<div class="col-md-4">
 
-<label>Floor</label>
+
+<label>
+Floor
+</label>
+
 
 <select id="floorSelect" class="form-select">
 
-<option>Select Floor</option>
+<option>
+Select Floor
+</option>
+
 
 </select>
+
 
 </div>
 
 
 
-<div class="col-md-3">
+<div class="col-md-4">
 
-<label>Area</label>
+
+<label>
+Area
+</label>
+
 
 <select id="areaSelect" class="form-select">
 
-<option>Select Area</option>
+
+<option>
+Select Area
+</option>
+
 
 </select>
+
 
 </div>
 
 
 
-<div class="col-md-3">
-
-<label>Down Payment</label>
-
-<select id="dpSelect" class="form-select">
-
-<option>0%</option>
-<option>10%</option>
-<option>20%</option>
-<option>30%</option>
-
-</select>
-
-</div>
+<div class="col-md-4">
 
 
+<label>
+Payment Years
+</label>
 
-<div class="col-md-3">
-
-<label>Years</label>
 
 <select id="yearSelect" class="form-select">
 
+
 <option>6 Years</option>
+
 <option>8 Years</option>
+
 <option>10 Years</option>
+
 <option>11 Years</option>
+
 <option>12.5 Years</option>
+
 
 </select>
 
+
+</div>
+
+
 </div>
 
 
 </div>
 
-</div>
+
 
 
 
@@ -120,118 +169,250 @@
 
 <div class="card p-4 mt-4">
 
+
 <div class="row">
 
 
-<div class="col-md-6">
+<div class="col-lg-6">
 
 
-<img id="unitImage" class="img-fluid rounded">
+<img id="unitImage">
 
 
-<div id="gallery" class="mt-3"></div>
+<div id="gallery" class="mt-3">
+
+</div>
 
 
 </div>
 
 
 
-<div class="col-md-6">
+
+<div class="col-lg-6">
 
 
-<h2 id="unitName">Select Unit</h2>
+<h2 id="unitName">
+
+Select Unit
+
+</h2>
 
 
-<p>Area:
+
+<p>
+Area:
 <b id="area"></b>
 </p>
 
 
-<p>Price:
+
+<p>
+Price:
 <b id="price"></b>
 </p>
 
 
-<p>Status:
+
+<p>
+Status:
 <b id="status"></b>
 </p>
 
 
-<p>Payment:
+
+<p>
+Payment Plan:
 <b id="payment"></b>
 </p>
 
 
-<button id="compareBtn" class="btn btn-success">
 
-Add Compare
+
+<button id="compareBtn" class="btn btn-success mt-2">
+
+Compare
 
 </button>
 
 
-<button id="bookBtn" class="btn btn-primary">
+
+<button id="bookBtn" class="btn btn-primary mt-2">
 
 Book Now
 
 </button>
 
 
-</div>
 
 
-</div>
-
-</div>
+<div id="bookingBox" style="display:none;" class="mt-4">
 
 
-
-
-
-<div class="card p-4 mt-4">
-
-<h3>Compare Units</h3>
-
-<div id="compareBox">
-
-No Units
-
-</div>
-
-</div>
+<h4>
+Reservation
+</h4>
 
 
 
+<select id="salesSelect" class="form-select mb-2">
 
 
-<div class="card p-4 mt-4">
-
-<h3>Payment Calculator</h3>
-
-
-<input id="downPayment"
-class="form-control"
-placeholder="Down Payment">
+<option>
+Select Sales Representative
+</option>
 
 
-<select id="paymentType" class="form-select mt-3">
+<option>
+Mohamed Abdelhamid
+</option>
 
-<option value="12">Monthly</option>
 
-<option value="4">Quarterly</option>
+<option>
+Ahmed Awad
+</option>
 
-<option value="1">Yearly</option>
+
+<option>
+Menas Nagy
+</option>
+
 
 </select>
 
 
-<button id="calculateBtn" class="btn btn-dark mt-3 w-100">
+
+
+
+<select id="bookingMethod" class="form-select mb-2">
+
+
+<option value="Visa">
+Visa
+</option>
+
+
+<option value="Cash">
+Cash
+</option>
+
+
+</select>
+
+
+
+<p id="bookingMessage"></p>
+
+
+
+
+<button id="confirmBooking" class="btn btn-success w-100">
+
+Confirm Reservation
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card p-4 mt-4">
+
+
+<h3>
+Compare Units
+</h3>
+
+
+<div id="compareBox">
+
+No Units Selected
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card p-4 mt-4">
+
+
+<h3>
+Payment Calculator
+</h3>
+
+
+
+<input 
+id="downPayment"
+class="form-control"
+placeholder="Down Payment">
+
+
+
+<select id="paymentType" class="form-select mt-3">
+
+
+<option value="12">
+Monthly
+</option>
+
+
+<option value="4">
+Quarterly
+</option>
+
+
+<option value="1">
+Yearly
+</option>
+
+
+</select>
+
+
+
+<button id="calculateBtn" class="btn btn-primary mt-3 w-100">
 
 Calculate
 
 </button>
 
 
-<h3 id="result" class="mt-3"></h3>
+
+<h3 id="result" class="mt-3">
+
+</h3>
+
 
 
 </div>
@@ -240,40 +421,6 @@ Calculate
 
 
 
-<div class="card p-4 mt-4">
-
-
-<h3>Booking</h3>
-
-
-<select id="bookingMethod" class="form-select">
-
-<option>Visa</option>
-
-<option>Cash</option>
-
-</select>
-
-
-<p id="cashMessage"></p>
-
-
-
-<select id="salesSelect" class="form-select">
-
-<option>Select Sales</option>
-
-<option>Ahmed Mohamed</option>
-
-<option>Sara Ali</option>
-
-<option>Mahmoud Hassan</option>
-
-</select>
-
-
-</div>
-
 
 
 
@@ -281,7 +428,9 @@ Calculate
 <div class="card p-4 mt-4">
 
 
-<h3>Project Information</h3>
+<h3>
+Project Information
+</h3>
 
 
 <p>
@@ -290,31 +439,47 @@ Company Location:
 </p>
 
 
+
 <p>
 Project Location:
 <span id="projectLocation"></span>
 </p>
 
 
-<h5>Nearby</h5>
+
+
+<h4>
+Nearby Landmarks
+</h4>
+
 
 <ul id="landmarks"></ul>
 
 
-<h5>Amenities</h5>
+
+<h4>
+Inside Compound
+</h4>
+
 
 <ul id="amenities"></ul>
 
 
-</div>
-
-
-
 
 </div>
+
+
+
+
+
+
+</div>
+
 
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
