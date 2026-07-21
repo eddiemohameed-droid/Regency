@@ -3,99 +3,49 @@
     "project": "Regency Tower II",
     "type": "Administrative",
 
-    "location": "Regency 2 Medical Tower - 2P2W+GJ4، الظهير الصحراوى لمحافظة القاهرة‬ 4850801",
+    "location": "Regency 2 Medical Tower - 2P2W+GJ4، الظهير الصحراوى لمحافظة القاهرة 4850801",
 
     "areas": [
-
       {
         "name": "45 SQM",
-        "units": [
-          {
-            "id":"R45",
-            "floor":"Ground Floor",
-            "type":"Administrative Unit",
-            "price":2500000,
-            "status":"Available",
-            "paymentPlan":"10% Down Payment - 10 Years",
-            "gallery":[
-              "images/unit1.jpg"
-            ]
-          }
-        ]
+        "floor": "Ground Floor",
+        "price": 2500000
       },
-
-
       {
-        "name":"78 SQM",
-        "units":[
-          {
-            "id":"R78",
-            "floor":"First Floor",
-            "type":"Administrative Unit",
-            "price":3900000,
-            "status":"Available",
-            "paymentPlan":"20% Down Payment - 8 Years",
-            "gallery":[
-              "images/unit2.jpg"
-            ]
-          }
-        ]
+        "name": "78 SQM",
+        "floor": "Ground Floor",
+        "price": 3900000
       },
-
-
       {
-        "name":"90 SQM",
-        "units":[
-          {
-            "id":"R90",
-            "floor":"First Floor",
-            "type":"Administrative Unit",
-            "price":4500000,
-            "status":"Available",
-            "paymentPlan":"10% Down Payment - 12 Years",
-            "gallery":[
-              "images/unit3.jpg"
-            ]
-          }
-        ]
+        "name": "90 SQM",
+        "floor": "First Floor",
+        "price": 4500000
       },
-
-
       {
-        "name":"115 SQM",
-        "units":[
-          {
-            "id":"R115",
-            "floor":"Second Floor",
-            "type":"Administrative Unit",
-            "price":7000000,
-            "status":"Available",
-            "paymentPlan":"30% Down Payment - 10 Years",
-            "gallery":[
-              "images/unit4.jpg"
-            ]
-          }
-        ]
+        "name": "95 SQM",
+        "floor": "First Floor",
+        "price": 5800000
       },
-
-
       {
-        "name":"150 SQM",
-        "units":[
-          {
-            "id":"R150",
-            "floor":"Second Floor",
-            "type":"Administrative Unit",
-            "price":9500000,
-            "status":"Available",
-            "paymentPlan":"20% Down Payment - 12 Years",
-            "gallery":[
-              "images/unit5.jpg"
-            ]
-          }
-        ]
+        "name": "115 SQM",
+        "floor": "Second Floor",
+        "price": 7000000
+      },
+      {
+        "name": "150 SQM",
+        "floor": "Second Floor",
+        "price": 9500000
+      },
+      {
+        "name": "190 SQM",
+        "floor": "Third Floor",
+        "price": 12000000
+      },
+      {
+        "name": "200 SQM",
+        "floor": "Third Floor",
+        "price": 13000000
       }
-
     ]
   },
 
@@ -103,104 +53,41 @@
 
   {
     "project": "Veloria",
-    "type": "Residential Compound",
+    "type": "Residential",
 
     "location": "XG96+RWX, New Cairo, AUC, beside Rock Vera, street, New Cairo 3, Cairo Governorate",
 
-    "areas":[
-
-
+    "areas": [
       {
-        "name":"95 SQM",
-
-        "units":[
-
-          {
-            "id":"V95",
-            "floor":"Ground Floor",
-            "type":"Apartment",
-            "price":5800000,
-            "status":"Available",
-            "paymentPlan":"10% Down Payment - 8 Years",
-            "gallery":[
-              "images/unit6.jpg"
-            ]
-          }
-
-        ]
-
+        "name": "75 SQM",
+        "floor": "Ground Floor",
+        "price": 3500000
       },
-
-
-
       {
-        "name":"115 SQM",
-
-        "units":[
-
-          {
-            "id":"V115",
-            "floor":"First Floor",
-            "type":"Apartment",
-            "price":7500000,
-            "status":"Available",
-            "paymentPlan":"20% Down Payment - 10 Years",
-            "gallery":[
-              "images/unit7.jpg"
-            ]
-          }
-
-        ]
-
+        "name": "95 SQM",
+        "floor": "First Floor",
+        "price": 5500000
       },
-
-
-
       {
-        "name":"190 SQM",
-
-        "units":[
-
-          {
-            "id":"V190",
-            "floor":"Second Floor",
-            "type":"Apartment",
-            "price":12000000,
-            "status":"Available",
-            "paymentPlan":"30% Down Payment - 12 Years",
-            "gallery":[
-              "images/unit8.jpg"
-            ]
-          }
-
-        ]
-
+        "name": "115 SQM",
+        "floor": "First Floor",
+        "price": 7000000
       },
-
-
-
       {
-        "name":"200 SQM",
-
-        "units":[
-
-          {
-            "id":"V200",
-            "floor":"Third Floor",
-            "type":"Apartment",
-            "price":13000000,
-            "status":"Available",
-            "paymentPlan":"30% Down Payment - 12 Years",
-            "gallery":[
-              "images/unit9.jpg"
-            ]
-          }
-
-        ]
-
+        "name": "150 SQM",
+        "floor": "Second Floor",
+        "price": 9500000
+      },
+      {
+        "name": "190 SQM",
+        "floor": "Third Floor",
+        "price": 12000000
+      },
+      {
+        "name": "200 SQM",
+        "floor": "Third Floor",
+        "price": 13000000
       }
-
     ]
   }
-
 ]
