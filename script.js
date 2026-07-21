@@ -1,81 +1,99 @@
-let data = null;
+let project = null;
 let selectedUnit = null;
 let compareList = [];
-
 
 const floorSelect = document.getElementById("floorSelect");
 const areaSelect = document.getElementById("areaSelect");
 
 
-// Load JSON
+
+// LOAD DATA
 
 fetch("units.json")
+
 .then(res => res.json())
-.then(result => {
 
-    data = result[0];
+.then(data => {
 
-    loadFloors();
-    loadProjectInfo();
+project = data[0];
+
+loadFloors();
+
+loadInfo();
 
 });
 
 
 
-// Floors
+
+
+// LOAD FLOORS
 
 function loadFloors(){
 
-    floorSelect.innerHTML =
-    `<option>Select Floor</option>`;
+floorSelect.innerHTML =
+`
+<option>Select Floor</option>
+`;
 
-    data.floors.forEach(floor=>{
+project.floors.forEach(floor=>{
 
-        floorSelect.innerHTML +=
-        `
-        <option value="${floor.name}">
-        ${floor.name}
-        </option>
-        `;
 
-    });
+floorSelect.innerHTML +=
+
+`
+<option value="${floor.name}">
+${floor.name}
+</option>
+`;
+
+
+});
 
 }
 
 
 
 
-// Floor Selected
+
+
+// FLOOR CHANGE
 
 floorSelect.addEventListener("change",()=>{
 
 
-    areaSelect.innerHTML =
-    `<option>Select Area</option>`;
+areaSelect.innerHTML =
+`
+<option>Select Area</option>
+`;
 
 
-    let floor =
-    data.floors.find(
-        x=>x.name===floorSelect.value
-    );
+
+let floor =
+project.floors.find(
+x=>x.name===floorSelect.value
+);
 
 
-    if(!floor)return;
+
+if(!floor)return;
 
 
-    floor.units.forEach(unit=>{
+
+floor.units.forEach(unit=>{
 
 
-        areaSelect.innerHTML +=
+areaSelect.innerHTML +=
 
-        `
-        <option value="${unit.id}">
-        ${unit.area}
-        </option>
-        `;
+`
+<option value="${unit.id}">
+${unit.area}
+</option>
+`;
 
 
-    });
+
+});
 
 
 });
@@ -84,15 +102,19 @@ floorSelect.addEventListener("change",()=>{
 
 
 
-// Area Selected
+
+
+// AREA CHANGE
+
 
 areaSelect.addEventListener("change",()=>{
 
 
 let floor =
-data.floors.find(
+project.floors.find(
 x=>x.name===floorSelect.value
 );
+
 
 
 selectedUnit =
@@ -101,10 +123,12 @@ x=>x.id===areaSelect.value
 );
 
 
+
 showUnit();
 
 
 });
+
 
 
 
@@ -125,15 +149,12 @@ selectedUnit.area;
 
 
 document.getElementById("price").innerHTML =
-selectedUnit.price.toLocaleString()+" EGP";
+selectedUnit.price.toLocaleString()
++" EGP";
 
 
 
-let status =
-document.getElementById("status");
-
-
-status.innerHTML =
+document.getElementById("status").innerHTML =
 selectedUnit.status;
 
 
@@ -143,30 +164,30 @@ selectedUnit.paymentPlan;
 
 
 
-// Image
 
 document.getElementById("unitImage").src =
 selectedUnit.gallery[0];
 
 
 
-// Gallery
+
 
 let gallery =
 document.getElementById("gallery");
 
-
 gallery.innerHTML="";
 
 
-selectedUnit.gallery.forEach(image=>{
+
+selectedUnit.gallery.forEach(img=>{
 
 
 gallery.innerHTML +=
 
 `
-<img src="${image}"
-onclick="changeImage('${image}')">
+
+<img src="${img}"
+onclick="changeImage('${img}')">
 
 `;
 
@@ -174,6 +195,8 @@ onclick="changeImage('${image}')">
 
 
 }
+
+
 
 
 
@@ -189,10 +212,15 @@ document.getElementById("unitImage").src=img;
 
 
 
-// Compare
+
+
+
+// COMPARE
+
 
 document.getElementById("compareBtn")
-.addEventListener("click",()=>{
+.onclick=function(){
+
 
 
 if(!selectedUnit){
@@ -204,6 +232,7 @@ return;
 }
 
 
+
 if(compareList.length>=3){
 
 alert("Maximum 3 Units");
@@ -213,20 +242,22 @@ return;
 }
 
 
+
 compareList.push(selectedUnit);
 
 
-renderCompare();
+
+showCompare();
 
 
-});
+};
 
 
 
 
 
 
-function renderCompare(){
+function showCompare(){
 
 
 let box =
@@ -236,27 +267,38 @@ document.getElementById("compareBox");
 box.innerHTML="";
 
 
+
 compareList.forEach(unit=>{
 
 
 box.innerHTML +=
 
-
 `
+
 <div class="compare-card">
 
-<h4>${unit.type}</h4>
+<h4>
+${unit.type}
+</h4>
 
-<p>${unit.area}</p>
+<p>
+${unit.area}
+</p>
 
-<p>${unit.price.toLocaleString()} EGP</p>
 
-<p>${unit.status}</p>
+<p>
+${unit.price.toLocaleString()} EGP
+</p>
+
+
+<p>
+${unit.status}
+</p>
+
 
 </div>
 
 `;
-
 
 });
 
@@ -270,11 +312,13 @@ box.innerHTML +=
 
 
 
-// Calculator
+
+// CALCULATOR
 
 
 document.getElementById("calculateBtn")
-.addEventListener("click",()=>{
+.onclick=function(){
+
 
 
 if(!selectedUnit){
@@ -294,15 +338,10 @@ document.getElementById("downPayment").value
 
 
 
-let paymentType =
+let type =
 Number(
 document.getElementById("paymentType").value
 );
-
-
-
-let years =
-10;
 
 
 
@@ -311,27 +350,29 @@ selectedUnit.price-down;
 
 
 
-let monthly =
-remaining/(years*paymentType);
+let installment =
+remaining/(10*type);
+
 
 
 
 document.getElementById("result").innerHTML=
 
 `
+
 Remaining:
 ${remaining.toLocaleString()} EGP
 
 <br><br>
 
 Installment:
-${Math.round(monthly).toLocaleString()} EGP
+${Math.round(installment).toLocaleString()} EGP
 
 `;
 
 
 
-});
+};
 
 
 
@@ -340,40 +381,82 @@ ${Math.round(monthly).toLocaleString()} EGP
 
 
 
-// Booking
+
+// BOOK NOW
 
 
-document.getElementById("bookingMethod")
-.addEventListener("change",function(){
+document.getElementById("bookBtn")
+.onclick=function(){
 
 
-let msg =
-document.getElementById("cashMessage");
+let box =
+document.getElementById("bookingBox");
 
 
-if(this.value==="Cash"){
+if(box.style.display==="none"){
 
-
-msg.innerHTML =
-
-`
-Cash Reservation:
-You have 7 days to visit company office
-and pay 50,000 EGP reservation fees.
-`;
+box.style.display="block";
 
 }
 
 else{
 
-
-msg.innerHTML =
-"Visa Payment Selected";
+box.style.display="none";
 
 }
 
 
-});
+};
+
+
+
+
+
+
+
+// VISA / CASH
+
+
+document.getElementById("bookingMethod")
+.onchange=function(){
+
+
+let msg =
+document.getElementById("bookingMessage");
+
+
+
+if(this.value==="Cash"){
+
+
+msg.innerHTML=
+
+`
+⚠️ Cash Reservation
+
+You have 7 days to visit Regency office
+and pay 50,000 EGP reservation fees.
+
+`;
+
+}
+
+
+else{
+
+
+msg.innerHTML=
+
+`
+Visa Payment Selected
+
+`;
+
+}
+
+
+
+};
 
 
 
@@ -382,43 +465,112 @@ msg.innerHTML =
 
 
 
+// CONFIRM
 
-// Project Information
+
+document.getElementById("confirmBooking")
+.onclick=function(){
 
 
-function loadProjectInfo(){
+let sales =
+document.getElementById("salesSelect").value;
+
+
+
+let method =
+document.getElementById("bookingMethod").value;
+
+
+
+if(sales==="Select Sales Representative"){
+
+
+alert("Select Sales Representative");
+
+return;
+
+
+}
+
+
+
+document.getElementById("bookingMessage").innerHTML=
+
+`
+
+<h4 style="color:#d4af37">
+
+✅ Reservation Completed
+
+</h4>
+
+
+Sales:
+${sales}
+
+<br>
+
+Payment:
+${method}
+
+`;
+
+
+
+};
+
+
+
+
+
+
+
+
+// INFO
+
+
+function loadInfo(){
+
 
 
 document.getElementById("companyLocation").innerHTML =
-data.companyLocation;
+project.companyLocation;
+
 
 
 document.getElementById("projectLocation").innerHTML =
-data.projectLocation;
+project.projectLocation;
 
 
 
-data.landmarks.forEach(item=>{
+
+
+project.landmarks.forEach(item=>{
 
 
 document.getElementById("landmarks").innerHTML +=
 
-`<li>${item}</li>`;
-
+`
+<li>${item}</li>
+`;
 
 });
 
 
 
-data.amenities.forEach(item=>{
+
+
+project.amenities.forEach(item=>{
 
 
 document.getElementById("amenities").innerHTML +=
 
-`<li>${item}</li>`;
-
+`
+<li>${item}</li>
+`;
 
 });
+
 
 
 }
