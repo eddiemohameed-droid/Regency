@@ -2,32 +2,28 @@
   {
     "project": "Regency Tower II",
 
-    "projectLocation": "New Capital - Downtown",
-
     "companyLocation": "New Cairo - Fifth Settlement",
+
+    "projectLocation": "New Capital - Downtown",
 
     "landmarks": [
       "German International University",
       "Future University",
       "Downtown Mall",
       "Open Air Mall",
-      "Premium Cafes & Restaurants"
+      "Restaurants & Cafes"
     ],
 
     "amenities": [
       "Kids Area",
       "Green Landscapes",
       "24/7 Security",
-      "Quiet Environment"
-    ],
-
-    "salesTeam": [
-      "Ahmed Mohamed",
-      "Sara Ali",
-      "Mahmoud Hassan"
+      "Quiet Environment",
+      "Smart Facilities"
     ],
 
     "floors": [
+
       {
         "name": "Ground Floor",
 
@@ -35,27 +31,11 @@
 
           {
             "id": "G001",
-            "area": "90 SQM",
+            "area": "45 SQM",
             "type": "Retail",
-            "price": 4500000,
+            "price": 2500000,
             "status": "Available",
-
-            "downPayment": [
-              "0%",
-              "10%",
-              "20%",
-              "30%"
-            ],
-
-            "years": [
-              "6 Years",
-              "8 Years",
-              "10 Years",
-              "11 Years",
-              "12.5 Years"
-            ],
-
-            "paymentPlan": "10% Down Payment - 8 Years",
+            "paymentPlan": "0% - 12.5 Years",
 
             "gallery": [
               "images/unit1.jpg",
@@ -67,35 +47,36 @@
 
           {
             "id": "G002",
-            "area": "150 SQM",
+            "area": "78 SQM",
             "type": "Retail",
-            "price": 7500000,
+            "price": 3900000,
             "status": "Available",
-
-            "downPayment": [
-              "0%",
-              "10%",
-              "20%",
-              "30%"
-            ],
-
-            "years": [
-              "6 Years",
-              "8 Years",
-              "10 Years",
-              "11 Years",
-              "12.5 Years"
-            ],
-
-            "paymentPlan": "20% Down Payment - 10 Years",
+            "paymentPlan": "10% - 10 Years",
 
             "gallery": [
-              "images/unit3.jpg",
-              "images/unit4.jpg"
+              "images/unit1.jpg",
+              "images/unit2.jpg"
+            ]
+          },
+
+
+          {
+            "id": "G003",
+            "area": "90 SQM",
+            "type": "Retail",
+            "price": 4500000,
+            "status": "Available",
+            "paymentPlan": "20% - 8 Years",
+
+            "gallery": [
+              "images/unit1.jpg",
+              "images/unit2.jpg"
             ]
           }
 
+
         ]
+
       },
 
 
@@ -110,33 +91,91 @@
             "type": "Clinic",
             "price": 5800000,
             "status": "Available",
+            "paymentPlan": "10% - 8 Years",
 
-            "downPayment": [
-              "0%",
-              "10%",
-              "20%",
-              "30%"
-            ],
+            "gallery": [
+              "images/unit3.jpg",
+              "images/unit4.jpg",
+              "images/floorplan.jpg"
+            ]
+          },
 
-            "years": [
-              "6 Years",
-              "8 Years",
-              "10 Years",
-              "11 Years",
-              "12.5 Years"
-            ],
 
-            "paymentPlan": "10% Down Payment - 8 Years",
+          {
+            "id": "F102",
+            "area": "115 SQM",
+            "type": "Clinic",
+            "price": 7000000,
+            "status": "Reserved",
+            "paymentPlan": "30% - 10 Years",
+
+            "gallery": [
+              "images/unit3.jpg",
+              "images/unit4.jpg"
+            ]
+          }
+
+
+        ]
+
+      },
+
+
+      {
+        "name": "Second Floor",
+
+        "units": [
+
+          {
+            "id": "S201",
+            "area": "150 SQM",
+            "type": "Office",
+            "price": 9500000,
+            "status": "Available",
+            "paymentPlan": "20% - 11 Years",
 
             "gallery": [
               "images/unit5.jpg",
-              "images/unit6.jpg",
-              "images/floorplan.jpg"
+              "images/unit6.jpg"
+            ]
+          },
+
+
+          {
+            "id": "S202",
+            "area": "190 SQM",
+            "type": "Office",
+            "price": 12000000,
+            "status": "Sold",
+            "paymentPlan": "30% - 6 Years",
+
+            "gallery": [
+              "images/unit5.jpg",
+              "images/unit6.jpg"
+            ]
+          },
+
+
+          {
+            "id": "S203",
+            "area": "200 SQM",
+            "type": "Office",
+            "price": 13000000,
+            "status": "Available",
+            "paymentPlan": "10% - 12.5 Years",
+
+            "gallery": [
+              "images/unit5.jpg",
+              "images/unit6.jpg"
             ]
           }
 
         ]
+
       }
+
     ]
+
   }
+
 ]
