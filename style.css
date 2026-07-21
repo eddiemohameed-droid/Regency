@@ -1,31 +1,20 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    background:#f2f5f9;
+    background:#0b0b0b;
     font-family:'Segoe UI',Arial,sans-serif;
-    color:#1f2937;
+    color:#f5f5f5;
 }
 
 
 .navbar{
-
-    background:linear-gradient(135deg,#001f3f,#00509d);
+    background:#050505;
+    border-bottom:1px solid #c9a227;
     padding:20px 0;
-    color:white;
-
 }
 
 
 .navbar h2{
-
-    margin:0;
-    font-weight:700;
-    letter-spacing:.5px;
-
+    color:#d4af37;
+    font-weight:800;
 }
 
 
@@ -35,57 +24,51 @@ body{
     background:
     linear-gradient(
     135deg,
-    rgba(0,45,90,.95),
-    rgba(0,105,180,.95)
+    #050505,
+    #1a1a1a
     );
 
-    color:white;
+    border:1px solid #c9a227;
+    color:#d4af37;
 
     padding:45px;
 
     border-radius:25px;
 
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    box-shadow:0 15px 40px rgba(212,175,55,.15);
 
 }
 
 
 .hero h1{
-
     font-size:42px;
-    font-weight:800;
-
-}
-
-
-.hero p{
-
-    font-size:20px;
-    opacity:.9;
-
+    font-weight:900;
 }
 
 
 
 .card{
 
-    background:white;
+    background:#111;
 
-    border:none;
+    border:1px solid #2d2d2d;
 
     border-radius:22px;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+
+    color:white;
 
 }
 
 
 
-.card h3{
+.card h3,
+.card h2{
 
-    color:#003b73;
+    color:#d4af37;
 
-    font-weight:700;
+    font-weight:800;
 
 }
 
@@ -93,9 +76,9 @@ body{
 
 label{
 
-    font-weight:600;
+    color:#d4af37;
 
-    margin-bottom:8px;
+    font-weight:600;
 
 }
 
@@ -104,22 +87,33 @@ label{
 .form-select,
 .form-control{
 
+    background:#050505;
+
+    color:white;
+
+    border:1px solid #c9a227;
+
     height:52px;
 
     border-radius:14px;
-
-    border:1px solid #dbe3ec;
 
 }
 
 
 
-.form-select:focus,
-.form-control:focus{
+.form-select option{
 
-    border-color:#0066b3;
+    background:#111;
 
-    box-shadow:0 0 0 .2rem rgba(0,102,179,.15);
+    color:white;
+
+}
+
+
+
+.form-control::placeholder{
+
+    color:#aaa;
 
 }
 
@@ -133,7 +127,9 @@ label{
 
     object-fit:cover;
 
-    background:#e9ecef;
+    border-radius:20px;
+
+    border:2px solid #c9a227;
 
 }
 
@@ -151,17 +147,7 @@ label{
 
     cursor:pointer;
 
-    margin-right:8px;
-
-    border:2px solid transparent;
-
-}
-
-
-
-#gallery img:hover{
-
-    border-color:#0066b3;
+    border:2px solid #c9a227;
 
 }
 
@@ -169,11 +155,9 @@ label{
 
 #unitName{
 
-    color:#003b73;
+    color:#d4af37;
 
-    font-size:34px;
-
-    font-weight:800;
+    font-size:35px;
 
 }
 
@@ -181,9 +165,9 @@ label{
 
 #price{
 
-    color:#198754;
+    color:#d4af37;
 
-    font-size:24px;
+    font-size:25px;
 
 }
 
@@ -191,11 +175,11 @@ label{
 
 #status{
 
-    padding:7px 15px;
+    background:#198754;
+
+    padding:8px 18px;
 
     border-radius:20px;
-
-    background:#198754;
 
     color:white;
 
@@ -203,21 +187,11 @@ label{
 
 
 
-.btn{
-
-    border-radius:14px;
-
-    padding:12px 25px;
-
-    font-weight:600;
-
-}
-
-
-
 .btn-primary{
 
-    background:#003b73;
+    background:#d4af37;
+
+    color:#000;
 
     border:none;
 
@@ -227,7 +201,9 @@ label{
 
 .btn-primary:hover{
 
-    background:#00509d;
+    background:#f5d76e;
+
+    color:black;
 
 }
 
@@ -237,27 +213,17 @@ label{
 
     background:#198754;
 
-    border:none;
-
 }
 
 
 
 .btn-warning{
 
-    color:#000;
+    background:#d4af37;
 
-}
+    border:none;
 
-
-
-#compareBox{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-    gap:15px;
+    color:black;
 
 }
 
@@ -265,13 +231,13 @@ label{
 
 .compare-card{
 
-    background:#f8fafc;
+    background:#050505;
+
+    border:1px solid #d4af37;
+
+    border-radius:15px;
 
     padding:20px;
-
-    border-radius:18px;
-
-    border-left:5px solid #00509d;
 
 }
 
@@ -279,27 +245,21 @@ label{
 
 #result{
 
-    background:#eef7ff;
+    background:#050505;
+
+    border:1px solid #d4af37;
 
     padding:20px;
 
-    border-radius:18px;
+    border-radius:15px;
 
-    color:#003b73;
-
-}
-
-
-
-ul{
-
-    padding-left:20px;
+    color:#d4af37;
 
 }
 
 
 
-li{
+ul li{
 
     margin-bottom:8px;
 
@@ -311,14 +271,13 @@ li{
 
 .hero h1{
 
-    font-size:30px;
+font-size:30px;
 
 }
 
-
 #unitImage{
 
-    height:280px;
+height:280px;
 
 }
 
