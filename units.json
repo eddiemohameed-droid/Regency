@@ -16,9 +16,9 @@
             "status": "Available",
             "paymentPlan": "10% Down Payment - 8 Years",
             "gallery": [
-              "images/unit1.png",
-              "images/unit2.png",
-              "images/unit2.png"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -35,8 +35,9 @@
             "status": "Available",
             "paymentPlan": "20% Down Payment - 10 Years",
             "gallery": [
-              "images/unit78-1.jpg",
-              "images/unit78-2.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -53,7 +54,9 @@
             "status": "Available",
             "paymentPlan": "10% Down Payment - 12 Years",
             "gallery": [
-              "images/unit90-1.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -70,7 +73,9 @@
             "status": "Available",
             "paymentPlan": "20% Down Payment - 10 Years",
             "gallery": [
-              "images/unit95-1.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -87,7 +92,9 @@
             "status": "Available",
             "paymentPlan": "30% Down Payment - 10 Years",
             "gallery": [
-              "images/unit115-1.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -104,8 +111,9 @@
             "status": "Available",
             "paymentPlan": "10% Down Payment - 12 Years",
             "gallery": [
-              "images/unit150-1.jpg",
-              "images/unit150-2.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -122,7 +130,9 @@
             "status": "Reserved",
             "paymentPlan": "20% Down Payment - 10 Years",
             "gallery": [
-              "images/unit190-1.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -139,7 +149,9 @@
             "status": "Available",
             "paymentPlan": "30% Down Payment - 8 Years",
             "gallery": [
-              "images/unit200-1.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -166,7 +178,9 @@
             "status": "Available",
             "paymentPlan": "10% Down Payment - 8 Years",
             "gallery": [
-              "images/veloria75.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -183,7 +197,9 @@
             "status": "Available",
             "paymentPlan": "20% Down Payment - 10 Years",
             "gallery": [
-              "images/veloria95.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
@@ -200,7 +216,9 @@
             "status": "Available",
             "paymentPlan": "20% Down Payment - 10 Years",
             "gallery": [
-              "images/veloria115.jpg"
+              "Images/unit1.png",
+              "Images/unit2.png",
+              "Images/unit2.png"
             ]
           }
         ]
