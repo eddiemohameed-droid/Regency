@@ -24,21 +24,17 @@
 
 <h2>🏢 Regency Inventory</h2>
 
-
 <div>
 
 <button id="salesMode" class="btn btn-primary">
 Sales Mode
 </button>
 
-
 <button id="adminMode" class="btn btn-warning">
 Admin Mode
 </button>
 
-
 </div>
-
 
 </div>
 
@@ -51,11 +47,12 @@ Admin Mode
 <div class="container py-4">
 
 
+
 <div class="hero">
 
 <h1>Property Inventory System</h1>
 
-<p>Sales & Management Dashboard</p>
+<p>Sales & Real Estate Management Dashboard</p>
 
 </div>
 
@@ -64,8 +61,8 @@ Admin Mode
 
 
 
-<div class="card p-4 mt-4">
 
+<div class="card p-4 mt-4">
 
 <h3>Search Property</h3>
 
@@ -77,20 +74,16 @@ Admin Mode
 
 <label>Project</label>
 
-
 <select id="projectSelect" class="form-select">
 
 <option>Regency Tower II</option>
 
 <option>Veloria</option>
 
-
 </select>
 
 
 </div>
-
-
 
 
 
@@ -104,8 +97,8 @@ Admin Mode
 
 </select>
 
-</div>
 
+</div>
 
 
 
@@ -118,6 +111,7 @@ Admin Mode
 <option>Select Floor</option>
 
 </select>
+
 
 </div>
 
@@ -141,14 +135,13 @@ Admin Mode
 
 <div class="col-md-6">
 
-
 <img id="unitImage">
 
 
 <div id="gallery"></div>
 
-
 </div>
+
 
 
 
@@ -159,26 +152,28 @@ Admin Mode
 <h2 id="unitName"></h2>
 
 
-<p>Area:
+<p>
+Area:
 <b id="area"></b>
 </p>
 
 
-<p>Price:
+<p>
+Price:
 <b id="price"></b>
 </p>
 
 
-<p>Status:
+<p>
+Status:
 <b id="status"></b>
 </p>
 
 
-
-<p>Payment:
+<p>
+Payment Plan:
 <b id="payment"></b>
 </p>
-
 
 
 
@@ -189,8 +184,6 @@ Book Now
 </button>
 
 
-</div>
-
 
 </div>
 
@@ -198,19 +191,23 @@ Book Now
 </div>
 
 
+</div>
 
 
 
 
-<!-- BOOKING -->
+
+
 
 
 <div id="bookingBox" class="card p-4 mt-4" style="display:none">
 
+
 <h3>Reservation</h3>
 
 
-<select id="salesSelect" class="form-select mb-2">
+<select id="salesSelect" class="form-select mb-3">
+
 
 <option>Select Sales</option>
 
@@ -220,12 +217,13 @@ Book Now
 
 <option>Menas Nagy</option>
 
+
 </select>
 
 
 
+<select id="paymentMethod" class="form-select mb-3">
 
-<select id="paymentMethod" class="form-select mb-2">
 
 <option>Select Payment</option>
 
@@ -233,7 +231,9 @@ Book Now
 
 <option>Cash</option>
 
+
 </select>
+
 
 
 
@@ -244,7 +244,9 @@ Confirm Reservation
 </button>
 
 
+
 <p id="bookingResult"></p>
+
 
 
 </div>
@@ -256,42 +258,153 @@ Confirm Reservation
 
 
 
-<!-- CALCULATOR DOWN -->
 
-<div class="card p-4 mt-4">
+<div class="card p-4 mt-4 calculator-card">
 
 
-<h3>Payment Calculator</h3>
+<h3>
+💰 Payment Calculator
+</h3>
 
+
+
+
+<div class="row">
+
+
+<div class="col-md-4">
+
+<label>
+Unit Price
+</label>
+
+<input id="unitPrice"
+class="form-control"
+readonly>
+
+
+</div>
+
+
+
+
+<div class="col-md-4">
+
+<label>
+Down Payment
+</label>
 
 <input id="downPayment"
 class="form-control"
-placeholder="Down Payment">
+placeholder="Enter Amount">
 
 
-<select id="paymentType" class="form-select mt-3">
+</div>
 
-<option value="12">Monthly</option>
 
-<option value="4">Quarterly</option>
 
-<option value="1">Yearly</option>
+
+<div class="col-md-4">
+
+<label>
+Duration
+</label>
+
+
+<select id="years" class="form-select">
+
+
+<option value="6">
+6 Years
+</option>
+
+
+<option value="8">
+8 Years
+</option>
+
+
+<option value="10">
+10 Years
+</option>
+
+
+<option value="11">
+11 Years
+</option>
+
+
+<option value="12.5">
+12.5 Years
+</option>
+
 
 </select>
 
 
+</div>
 
-<button id="calculateBtn" class="btn btn-primary mt-3">
 
-Calculate
+</div>
+
+
+
+
+
+<div class="mt-3">
+
+
+<label>
+Payment Type
+</label>
+
+
+<select id="paymentType" class="form-select">
+
+
+<option value="12">
+Monthly
+</option>
+
+
+<option value="4">
+Quarterly
+</option>
+
+
+<option value="1">
+Yearly
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+<button id="calculateBtn" class="btn btn-primary mt-4 w-100">
+
+Calculate Payment
 
 </button>
 
 
-<h4 id="calculatorResult"></h4>
+
+
+
+<div id="calculatorResult" class="mt-4">
+
+</div>
+
 
 
 </div>
+
 
 
 
@@ -317,27 +430,17 @@ Calculate
 
 
 
-<!-- ADMIN -->
-
 <div id="adminPanel" class="card p-4 mt-4" style="display:none">
 
 
-<h3>Admin Mode</h3>
+<h3>
+Admin Mode
+</h3>
 
 
-<input class="form-control mb-2"
-placeholder="Add Area">
-
-
-<input class="form-control mb-2"
-placeholder="Add Price">
-
-
-<button class="btn btn-success">
-
-Add Unit
-
-</button>
+<p>
+Manage Inventory
+</p>
 
 
 </div>
@@ -345,11 +448,15 @@ Add Unit
 
 
 
+
+
 </div>
+
 
 
 
 <script src="script.js"></script>
+
 
 </body>
 
