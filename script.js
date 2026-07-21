@@ -1,39 +1,35 @@
-let projectData = null;
+let data = null;
 let selectedUnit = null;
-let compareUnits = [];
+let compareList = [];
+
 
 const floorSelect = document.getElementById("floorSelect");
 const areaSelect = document.getElementById("areaSelect");
-const areaSearch = document.getElementById("areaSearch");
 
 
-// LOAD JSON
+// Load JSON
 
 fetch("units.json")
-
 .then(res => res.json())
+.then(result => {
 
-.then(data => {
-
-    projectData = data[0];
+    data = result[0];
 
     loadFloors();
-
     loadProjectInfo();
 
 });
 
 
 
-// FLOORS
+// Floors
 
 function loadFloors(){
 
     floorSelect.innerHTML =
-    `<option value="">Select Floor</option>`;
+    `<option>Select Floor</option>`;
 
-
-    projectData.floors.forEach(floor=>{
+    data.floors.forEach(floor=>{
 
         floorSelect.innerHTML +=
         `
@@ -49,43 +45,37 @@ function loadFloors(){
 
 
 
-// FLOOR CHANGE
+// Floor Selected
 
 floorSelect.addEventListener("change",()=>{
 
 
-areaSelect.innerHTML =
-`<option value="">Select Area</option>`;
+    areaSelect.innerHTML =
+    `<option>Select Area</option>`;
 
 
-clearDetails();
+    let floor =
+    data.floors.find(
+        x=>x.name===floorSelect.value
+    );
 
 
-
-let floor =
-projectData.floors.find(
-x=>x.name===floorSelect.value
-);
+    if(!floor)return;
 
 
-
-if(!floor) return;
-
+    floor.units.forEach(unit=>{
 
 
-floor.units.forEach(unit=>{
+        areaSelect.innerHTML +=
+
+        `
+        <option value="${unit.id}">
+        ${unit.area}
+        </option>
+        `;
 
 
-areaSelect.innerHTML +=
-
-`
-<option value="${unit.id}">
-${unit.area}
-</option>
-`;
-
-
-});
+    });
 
 
 });
@@ -93,13 +83,14 @@ ${unit.area}
 
 
 
-// AREA CHANGE
+
+// Area Selected
 
 areaSelect.addEventListener("change",()=>{
 
 
 let floor =
-projectData.floors.find(
+data.floors.find(
 x=>x.name===floorSelect.value
 );
 
@@ -108,7 +99,6 @@ selectedUnit =
 floor.units.find(
 x=>x.id===areaSelect.value
 );
-
 
 
 showUnit();
@@ -120,25 +110,21 @@ showUnit();
 
 
 
-// SHOW UNIT
 
 function showUnit(){
 
 
 document.getElementById("unitName").innerHTML =
-
 selectedUnit.type;
 
 
 
 document.getElementById("area").innerHTML =
-
 selectedUnit.area;
 
 
 
 document.getElementById("price").innerHTML =
-
 selectedUnit.price.toLocaleString()+" EGP";
 
 
@@ -151,26 +137,20 @@ status.innerHTML =
 selectedUnit.status;
 
 
-status.className =
-selectedUnit.status;
-
-
 
 document.getElementById("payment").innerHTML =
-
 selectedUnit.paymentPlan;
 
 
 
-// MAIN IMAGE
+// Image
 
 document.getElementById("unitImage").src =
-
 selectedUnit.gallery[0];
 
 
 
-// GALLERY
+// Gallery
 
 let gallery =
 document.getElementById("gallery");
@@ -179,22 +159,14 @@ document.getElementById("gallery");
 gallery.innerHTML="";
 
 
-
-selectedUnit.gallery.forEach(img=>{
+selectedUnit.gallery.forEach(image=>{
 
 
 gallery.innerHTML +=
 
 `
-<img src="${img}"
-
-width="80"
-
-height="60"
-
-style="object-fit:cover;cursor:pointer;border-radius:8px"
-
-onclick="changeImage('${img}')">
+<img src="${image}"
+onclick="changeImage('${image}')">
 
 `;
 
@@ -202,7 +174,6 @@ onclick="changeImage('${img}')">
 
 
 }
-
 
 
 
@@ -217,18 +188,23 @@ document.getElementById("unitImage").src=img;
 
 
 
-// COMPARE
 
-document.querySelector(".btn-success")
+// Compare
 
+document.getElementById("compareBtn")
 .addEventListener("click",()=>{
 
 
-if(!selectedUnit) return;
+if(!selectedUnit){
+
+alert("Select Unit First");
+
+return;
+
+}
 
 
-
-if(compareUnits.length>=3){
+if(compareList.length>=3){
 
 alert("Maximum 3 Units");
 
@@ -237,11 +213,10 @@ return;
 }
 
 
+compareList.push(selectedUnit);
 
-compareUnits.push(selectedUnit);
 
-
-showCompare();
+renderCompare();
 
 
 });
@@ -250,7 +225,8 @@ showCompare();
 
 
 
-function showCompare(){
+
+function renderCompare(){
 
 
 let box =
@@ -260,33 +236,27 @@ document.getElementById("compareBox");
 box.innerHTML="";
 
 
-
-compareUnits.forEach(unit=>{
+compareList.forEach(unit=>{
 
 
 box.innerHTML +=
 
+
 `
-<div class="card p-3 mb-2">
+<div class="compare-card">
 
+<h4>${unit.type}</h4>
 
-<h5>${unit.type}</h5>
+<p>${unit.area}</p>
 
-Area: ${unit.area}
+<p>${unit.price.toLocaleString()} EGP</p>
 
-<br>
-
-Price:
-${unit.price.toLocaleString()}
-
-<br>
-
-Status:
-${unit.status}
-
+<p>${unit.status}</p>
 
 </div>
+
 `;
+
 
 });
 
@@ -297,11 +267,13 @@ ${unit.status}
 
 
 
-// CALCULATOR
+
+
+
+// Calculator
 
 
 document.getElementById("calculateBtn")
-
 .addEventListener("click",()=>{
 
 
@@ -314,6 +286,7 @@ return;
 }
 
 
+
 let down =
 Number(
 document.getElementById("downPayment").value
@@ -321,17 +294,15 @@ document.getElementById("downPayment").value
 
 
 
-let years =
-Number(
-document.getElementById("years").value
-);
-
-
-
-let type =
+let paymentType =
 Number(
 document.getElementById("paymentType").value
 );
+
+
+
+let years =
+10;
 
 
 
@@ -340,24 +311,21 @@ selectedUnit.price-down;
 
 
 
-let installment =
-remaining/(years*type);
+let monthly =
+remaining/(years*paymentType);
 
 
 
 document.getElementById("result").innerHTML=
 
 `
-
 Remaining:
-
 ${remaining.toLocaleString()} EGP
 
 <br><br>
 
 Installment:
-
-${Math.round(installment).toLocaleString()} EGP
+${Math.round(monthly).toLocaleString()} EGP
 
 `;
 
@@ -370,32 +338,70 @@ ${Math.round(installment).toLocaleString()} EGP
 
 
 
-// PROJECT INFO
+
+
+// Booking
+
+
+document.getElementById("bookingMethod")
+.addEventListener("change",function(){
+
+
+let msg =
+document.getElementById("cashMessage");
+
+
+if(this.value==="Cash"){
+
+
+msg.innerHTML =
+
+`
+Cash Reservation:
+You have 7 days to visit company office
+and pay 50,000 EGP reservation fees.
+`;
+
+}
+
+else{
+
+
+msg.innerHTML =
+"Visa Payment Selected";
+
+}
+
+
+});
+
+
+
+
+
+
+
+
+
+// Project Information
 
 
 function loadProjectInfo(){
 
 
 document.getElementById("companyLocation").innerHTML =
-
-projectData.companyLocation;
-
+data.companyLocation;
 
 
 document.getElementById("projectLocation").innerHTML =
-
-projectData.projectLocation;
-
+data.projectLocation;
 
 
-let landmarks =
-document.getElementById("landmarks");
+
+data.landmarks.forEach(item=>{
 
 
-projectData.landmarks.forEach(item=>{
-
-
-landmarks.innerHTML +=
+document.getElementById("landmarks").innerHTML +=
 
 `<li>${item}</li>`;
 
@@ -404,48 +410,15 @@ landmarks.innerHTML +=
 
 
 
-let amenities =
-document.getElementById("amenities");
+data.amenities.forEach(item=>{
 
 
-projectData.amenities.forEach(item=>{
-
-
-amenities.innerHTML +=
+document.getElementById("amenities").innerHTML +=
 
 `<li>${item}</li>`;
 
 
 });
-
-
-}
-
-
-
-
-
-
-
-function clearDetails(){
-
-
-selectedUnit=null;
-
-
-document.getElementById("unitName").innerHTML="Select Unit";
-
-document.getElementById("area").innerHTML="";
-
-document.getElementById("price").innerHTML="";
-
-document.getElementById("status").innerHTML="";
-
-document.getElementById("payment").innerHTML="";
-
-document.getElementById("unitImage").src="";
-
-document.getElementById("gallery").innerHTML="";
 
 
 }
