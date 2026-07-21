@@ -2,92 +2,210 @@
   {
     "project": "Regency Tower II",
     "type": "Administrative",
-
     "location": "Regency 2 Medical Tower - 2P2W+GJ4، الظهير الصحراوى لمحافظة القاهرة 4850801",
 
     "areas": [
+
       {
         "name": "45 SQM",
-        "floor": "Ground Floor",
-        "price": 2500000
+        "units": [
+          {
+            "floor": "Ground Floor",
+            "type": "Administrative Unit",
+            "price": 2500000,
+            "status": "Available",
+            "paymentPlan": "10% Down Payment - 8 Years",
+            "gallery": [
+              "images/unit45-1.jpg",
+              "images/unit45-2.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "78 SQM",
-        "floor": "Ground Floor",
-        "price": 3900000
+        "units": [
+          {
+            "floor": "Ground Floor",
+            "type": "Administrative Unit",
+            "price": 3900000,
+            "status": "Available",
+            "paymentPlan": "20% Down Payment - 10 Years",
+            "gallery": [
+              "images/unit78-1.jpg",
+              "images/unit78-2.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "90 SQM",
-        "floor": "First Floor",
-        "price": 4500000
+        "units": [
+          {
+            "floor": "First Floor",
+            "type": "Administrative Unit",
+            "price": 4500000,
+            "status": "Available",
+            "paymentPlan": "10% Down Payment - 12 Years",
+            "gallery": [
+              "images/unit90-1.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "95 SQM",
-        "floor": "First Floor",
-        "price": 5800000
+        "units": [
+          {
+            "floor": "First Floor",
+            "type": "Administrative Unit",
+            "price": 5800000,
+            "status": "Available",
+            "paymentPlan": "20% Down Payment - 10 Years",
+            "gallery": [
+              "images/unit95-1.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "115 SQM",
-        "floor": "Second Floor",
-        "price": 7000000
+        "units": [
+          {
+            "floor": "Second Floor",
+            "type": "Administrative Unit",
+            "price": 7000000,
+            "status": "Available",
+            "paymentPlan": "30% Down Payment - 10 Years",
+            "gallery": [
+              "images/unit115-1.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "150 SQM",
-        "floor": "Second Floor",
-        "price": 9500000
+        "units": [
+          {
+            "floor": "Second Floor",
+            "type": "Administrative Unit",
+            "price": 9500000,
+            "status": "Available",
+            "paymentPlan": "10% Down Payment - 12 Years",
+            "gallery": [
+              "images/unit150-1.jpg",
+              "images/unit150-2.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "190 SQM",
-        "floor": "Third Floor",
-        "price": 12000000
+        "units": [
+          {
+            "floor": "Third Floor",
+            "type": "Administrative Unit",
+            "price": 12000000,
+            "status": "Reserved",
+            "paymentPlan": "20% Down Payment - 10 Years",
+            "gallery": [
+              "images/unit190-1.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "200 SQM",
-        "floor": "Third Floor",
-        "price": 13000000
+        "units": [
+          {
+            "floor": "Third Floor",
+            "type": "Administrative Unit",
+            "price": 13000000,
+            "status": "Available",
+            "paymentPlan": "30% Down Payment - 8 Years",
+            "gallery": [
+              "images/unit200-1.jpg"
+            ]
+          }
+        ]
       }
+
     ]
   },
-
 
 
   {
     "project": "Veloria",
     "type": "Residential",
-
     "location": "XG96+RWX, New Cairo, AUC, beside Rock Vera, street, New Cairo 3, Cairo Governorate",
 
     "areas": [
+
       {
         "name": "75 SQM",
-        "floor": "Ground Floor",
-        "price": 3500000
+        "units": [
+          {
+            "floor": "Ground Floor",
+            "type": "Apartment",
+            "price": 3500000,
+            "status": "Available",
+            "paymentPlan": "10% Down Payment - 8 Years",
+            "gallery": [
+              "images/veloria75.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "95 SQM",
-        "floor": "First Floor",
-        "price": 5500000
+        "units": [
+          {
+            "floor": "First Floor",
+            "type": "Apartment",
+            "price": 5500000,
+            "status": "Available",
+            "paymentPlan": "20% Down Payment - 10 Years",
+            "gallery": [
+              "images/veloria95.jpg"
+            ]
+          }
+        ]
       },
+
+
       {
         "name": "115 SQM",
-        "floor": "First Floor",
-        "price": 7000000
-      },
-      {
-        "name": "150 SQM",
-        "floor": "Second Floor",
-        "price": 9500000
-      },
-      {
-        "name": "190 SQM",
-        "floor": "Third Floor",
-        "price": 12000000
-      },
-      {
-        "name": "200 SQM",
-        "floor": "Third Floor",
-        "price": 13000000
+        "units": [
+          {
+            "floor": "First Floor",
+            "type": "Apartment",
+            "price": 7000000,
+            "status": "Available",
+            "paymentPlan": "20% Down Payment - 10 Years",
+            "gallery": [
+              "images/veloria115.jpg"
+            ]
+          }
+        ]
       }
+
+
     ]
   }
 ]
