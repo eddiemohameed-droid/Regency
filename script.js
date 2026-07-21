@@ -1,10 +1,12 @@
-let data = null;
+let projects = [];
 let selectedUnit = null;
 
 
 
+const projectSelect = document.getElementById("projectSelect");
 const areaSelect = document.getElementById("areaSelect");
 const floorSelect = document.getElementById("floorSelect");
+
 
 
 
@@ -12,15 +14,13 @@ const floorSelect = document.getElementById("floorSelect");
 
 fetch("units.json")
 
-.then(res=>res.json())
+.then(res => res.json())
 
-.then(result=>{
+.then(data => {
 
-data=result[0];
+projects = data;
 
-loadAreas();
-
-loadInfo();
+loadProject();
 
 });
 
@@ -28,18 +28,42 @@ loadInfo();
 
 
 
-// LOAD AREAS
 
-function loadAreas(){
+// PROJECT CHANGE
+
+projectSelect.addEventListener("change",()=>{
+
+loadProject();
+
+});
 
 
-areaSelect.innerHTML=
+
+
+
+
+function loadProject(){
+
+
+let project = projects.find(
+x=>x.project === projectSelect.value
+);
+
+
+
+areaSelect.innerHTML =
 `
 <option>Select Area</option>
 `;
 
+floorSelect.innerHTML =
+`
+<option>Select Floor</option>
+`;
 
-data.areas.forEach(area=>{
+
+
+project.areas.forEach(area=>{
 
 
 areaSelect.innerHTML +=
@@ -54,6 +78,12 @@ ${area.name}
 });
 
 
+
+document.getElementById("projectLocation").innerHTML =
+project.location;
+
+
+
 }
 
 
@@ -61,26 +91,31 @@ ${area.name}
 
 
 
-// AREA SELECT
 
+
+// AREA CHANGE
 
 areaSelect.addEventListener("change",()=>{
+
+
+let project =
+projects.find(
+x=>x.project === projectSelect.value
+);
+
+
+
+let area =
+project.areas.find(
+x=>x.name===areaSelect.value
+);
+
 
 
 floorSelect.innerHTML=
 `
 <option>Select Floor</option>
 `;
-
-
-let area =
-data.areas.find(
-x=>x.name===areaSelect.value
-);
-
-
-
-if(!area)return;
 
 
 
@@ -96,7 +131,6 @@ ${unit.floor}
 
 `;
 
-
 });
 
 
@@ -108,14 +142,23 @@ ${unit.floor}
 
 
 
-// FLOOR SELECT
+
+
+// FLOOR CHANGE
 
 
 floorSelect.addEventListener("change",()=>{
 
 
+let project =
+projects.find(
+x=>x.project===projectSelect.value
+);
+
+
+
 let area =
-data.areas.find(
+project.areas.find(
 x=>x.name===areaSelect.value
 );
 
@@ -128,7 +171,7 @@ x=>x.id===floorSelect.value
 
 
 
-showDetails();
+showUnit();
 
 
 });
@@ -139,7 +182,9 @@ showDetails();
 
 
 
-function showDetails(){
+
+
+function showUnit(){
 
 
 document.getElementById("detailsSection")
@@ -172,47 +217,14 @@ selectedUnit.paymentPlan;
 
 
 
+
 document.getElementById("unitImage").src =
 selectedUnit.gallery[0];
 
 
-
-let gallery =
-document.getElementById("gallery");
-
-
-gallery.innerHTML="";
-
-
-
-selectedUnit.gallery.forEach(img=>{
-
-
-gallery.innerHTML +=
-
-`
-
-<img src="${img}"
-onclick="changeImage('${img}')">
-
-`;
-
-
-});
-
-
 }
 
 
-
-
-
-
-function changeImage(img){
-
-document.getElementById("unitImage").src=img;
-
-}
 
 
 
@@ -224,14 +236,14 @@ document.getElementById("unitImage").src=img;
 
 // BOOK NOW
 
-
 document.getElementById("bookBtn")
 .onclick=function(){
 
 
+
 if(!selectedUnit){
 
-alert("Please select area and floor first");
+alert("Please select unit first");
 
 return;
 
@@ -252,7 +264,8 @@ document.getElementById("bookingBox")
 
 
 
-// CONFIRM BOOKING
+
+// CONFIRM RESERVATION
 
 
 document.getElementById("confirmBooking")
@@ -262,6 +275,7 @@ document.getElementById("confirmBooking")
 
 let sales =
 document.getElementById("salesSelect").value;
+
 
 
 let payment =
@@ -290,25 +304,19 @@ return;
 
 
 
-
-document.getElementById("bookingResult").innerHTML=
-
+document.getElementById("bookingResult").innerHTML =
 
 `
-
 <h4 style="color:green">
 
 ✅ Reservation Completed
 
 </h4>
 
-
 Sales:
 ${sales}
 
-
 <br>
-
 
 Payment:
 ${payment}
@@ -327,7 +335,9 @@ ${payment}
 
 
 
-// CALCULATOR BUTTON
+
+
+// CALCULATOR
 
 
 document.getElementById("calculateBtn")
@@ -337,7 +347,7 @@ document.getElementById("calculateBtn")
 
 if(!selectedUnit){
 
-alert("Please select unit first");
+alert("Select unit first");
 
 return;
 
@@ -369,8 +379,8 @@ remaining/(10*type);
 
 
 
-
-document.getElementById("calculatorResult").innerHTML=
+document.getElementById("calculatorResult")
+.innerHTML=
 
 `
 
@@ -395,46 +405,33 @@ ${Math.round(installment).toLocaleString()} EGP
 
 
 
-// PROJECT INFO
+
+// ADMIN MODE
 
 
-function loadInfo(){
+document.getElementById("adminMode")
+.onclick=function(){
 
 
-document.getElementById("companyLocation").innerHTML =
-data.companyLocation;
+document.getElementById("adminPanel")
+.style.display="block";
 
 
-document.getElementById("projectLocation").innerHTML =
-data.projectLocation;
-
-
-
-
-data.landmarks.forEach(x=>{
-
-
-document.getElementById("landmarks").innerHTML +=
-
-`
-<li>${x}</li>
-`;
-
-});
+};
 
 
 
 
-data.amenities.forEach(x=>{
+
+// SALES MODE
 
 
-document.getElementById("amenities").innerHTML +=
-
-`
-<li>${x}</li>
-`;
-
-});
+document.getElementById("salesMode")
+.onclick=function(){
 
 
-}
+document.getElementById("adminPanel")
+.style.display="none";
+
+
+};
